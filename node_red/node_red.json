@@ -1,0 +1,2981 @@
+[
+    {
+        "id": "f2b927bb6aaa12e9",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "37c11223f15062e0",
+        "type": "group",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "8dd95702c8691b0f",
+            "87511ae5c105af6e",
+            "8a5dadee22b3c60a",
+            "d5dc0bbd0e5e9071",
+            "6bdffba0885046eb",
+            "bb8f815f15a1aaae",
+            "5edbc59639ec2a9b",
+            "b6f9229b2260e96c",
+            "120427b5e12ad4ac",
+            "0c6206984253d7d9",
+            "0fdde23598c510e2",
+            "55d13e7e469edd80",
+            "c32fb1cfd4e11f8c",
+            "fe4f739ec72b2c9f",
+            "c06751f5d8534176",
+            "889f1f855ba752a4"
+        ],
+        "x": 14,
+        "y": 1659,
+        "w": 1352,
+        "h": 362
+    },
+    {
+        "id": "aece30c102c804fb",
+        "type": "ui_gauge",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "group": "e8da300679403f68",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Hőmérséklet",
+        "label": "°C",
+        "format": "{{payload}}",
+        "min": "20",
+        "max": "45",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 710,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "ac3e9982a048ccf9",
+        "type": "mqtt out",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "topic": "esp8266/led",
+        "qos": "1",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "28440418ba8bdd99",
+        "x": 690,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "70381d78ce59bb63",
+        "type": "ui_switch",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "label": "LED",
+        "tooltip": "",
+        "group": "57c9463ffaabef93",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "esp8266/test",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "1",
+        "onvalueType": "num",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "0",
+        "offvalueType": "num",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 130,
+        "y": 40,
+        "wires": [
+            [
+                "ac3e9982a048ccf9"
+            ]
+        ]
+    },
+    {
+        "id": "ccdab8e2f17b4d1b",
+        "type": "ui_slider",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "label": "Servo motor",
+        "tooltip": "",
+        "group": "57c9463ffaabef93",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "end",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": "0",
+        "max": "180",
+        "step": "1",
+        "className": "",
+        "x": 150,
+        "y": 100,
+        "wires": [
+            [
+                "f582980c4da4a015"
+            ]
+        ]
+    },
+    {
+        "id": "f582980c4da4a015",
+        "type": "mqtt out",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "topic": "esp8266/servo",
+        "qos": "1",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "28440418ba8bdd99",
+        "x": 700,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "9da621ebc50eb1bc",
+        "type": "ui_gauge",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "group": "e8da300679403f68",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Távolság",
+        "label": "cm",
+        "format": "{{payload}}",
+        "min": 0,
+        "max": "500",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 720,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "2ddcc53299b82ad8",
+        "type": "ui_gauge",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "group": "e8da300679403f68",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Fényerő",
+        "label": "",
+        "format": "{{payload}}",
+        "min": 0,
+        "max": "0.5",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 720,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "9512820c905e858f",
+        "type": "mqtt in",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "topic": "esp8266/json",
+        "qos": "1",
+        "datatype": "auto-detect",
+        "broker": "28440418ba8bdd99",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 170,
+        "y": 400,
+        "wires": [
+            [
+                "0f268cae28a3a65b",
+                "75e047f13bf6cfc8",
+                "44912df8e3f6c9a0",
+                "ff724e7f1d01be1c",
+                "851a3a8b35cd1f6d"
+            ]
+        ]
+    },
+    {
+        "id": "f2c22e2e12ca3885",
+        "type": "debug",
+        "z": "f2b927bb6aaa12e9",
+        "name": "API check",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 1580,
+        "wires": []
+    },
+    {
+        "id": "011524390d2dd06f",
+        "type": "http request",
+        "z": "f2b927bb6aaa12e9",
+        "name": "Fénykép kérés",
+        "method": "GET",
+        "ret": "bin",
+        "paytoqs": "body",
+        "url": "192.168.0.19/capture",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 720,
+        "y": 2560,
+        "wires": [
+            [
+                "27912e9d5159ee46",
+                "8ea4ef4392599908",
+                "9a8d0cf1bbcc69ed"
+            ]
+        ]
+    },
+    {
+        "id": "27912e9d5159ee46",
+        "type": "jimp-image",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "data": "payload",
+        "dataType": "msg",
+        "ret": "b64",
+        "parameter1": "",
+        "parameter1Type": "msg",
+        "parameter2": "",
+        "parameter2Type": "msg",
+        "parameter3": "",
+        "parameter3Type": "msg",
+        "parameter4": "",
+        "parameter4Type": "msg",
+        "parameter5": "",
+        "parameter5Type": "msg",
+        "parameter6": "",
+        "parameter6Type": "msg",
+        "parameter7": "",
+        "parameter7Type": "msg",
+        "parameter8": "",
+        "parameter8Type": "msg",
+        "sendProperty": "payload",
+        "sendPropertyType": "msg",
+        "parameterCount": 0,
+        "jimpFunction": "none",
+        "selectedJimpFunction": {
+            "name": "none",
+            "fn": "none",
+            "description": "Just loads the image.",
+            "parameters": []
+        },
+        "x": 910,
+        "y": 2500,
+        "wires": [
+            [
+                "a2be39636ecc73da"
+            ]
+        ]
+    },
+    {
+        "id": "a2be39636ecc73da",
+        "type": "image viewer",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "width": 160,
+        "data": "payload",
+        "dataType": "msg",
+        "active": true,
+        "x": 1270,
+        "y": 2540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0f268cae28a3a65b",
+        "type": "function",
+        "z": "f2b927bb6aaa12e9",
+        "name": "hőmérséklet",
+        "func": "var temp = parseFloat(msg.payload.temperature)\nmsg.payload = temp.toPrecision(3)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 480,
+        "wires": [
+            [
+                "f5282bb6befa699c",
+                "aece30c102c804fb"
+            ]
+        ]
+    },
+    {
+        "id": "f5282bb6befa699c",
+        "type": "ui_chart",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "group": "e8da300679403f68",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "label": "Hőmérséklet táblázat",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 680,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "75e047f13bf6cfc8",
+        "type": "function",
+        "z": "f2b927bb6aaa12e9",
+        "name": "fényerő",
+        "func": "var res = 0.5 - msg.payload.light_voltage\nmsg.payload = res.toPrecision(3);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 400,
+        "wires": [
+            [
+                "932640c4a1cb1395",
+                "2ddcc53299b82ad8"
+            ]
+        ]
+    },
+    {
+        "id": "932640c4a1cb1395",
+        "type": "ui_chart",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "group": "e8da300679403f68",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "label": "Fényerő táblázat",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 690,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5778b0e21c9a025d",
+        "type": "inject",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 130,
+        "y": 2520,
+        "wires": [
+            [
+                "91c102bd68ad7ddc"
+            ]
+        ]
+    },
+    {
+        "id": "84a71503f92648d5",
+        "type": "inject",
+        "z": "f2b927bb6aaa12e9",
+        "name": "Req. API",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 120,
+        "y": 1620,
+        "wires": [
+            [
+                "7d932fe7e41681cc"
+            ]
+        ]
+    },
+    {
+        "id": "7d932fe7e41681cc",
+        "type": "RapidAPI",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "account": "a445154950292260",
+        "url": "https://weatherapi-com.p.rapidapi.com/forecast.json?q=Kiskoros&days=3",
+        "method": "GET",
+        "x": 360,
+        "y": 1620,
+        "wires": [
+            [
+                "f2c22e2e12ca3885",
+                "90cad3af1acce385"
+            ]
+        ]
+    },
+    {
+        "id": "836bf90cce308376",
+        "type": "file",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "filename": "/home/balazs/Asztal/weather.json",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 900,
+        "y": 1620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "90cad3af1acce385",
+        "type": "json",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "property": "payload",
+        "action": "str",
+        "pretty": false,
+        "x": 650,
+        "y": 1620,
+        "wires": [
+            [
+                "836bf90cce308376"
+            ]
+        ]
+    },
+    {
+        "id": "8dd95702c8691b0f",
+        "type": "file in",
+        "z": "f2b927bb6aaa12e9",
+        "g": "37c11223f15062e0",
+        "name": "",
+        "filename": "/home/balazs/Asztal/weather.json",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 400,
+        "y": 1700,
+        "wires": [
+            [
+                "8a5dadee22b3c60a"
+            ]
+        ]
+    },
+    {
+        "id": "87511ae5c105af6e",
+        "type": "inject",
+        "z": "f2b927bb6aaa12e9",
+        "g": "37c11223f15062e0",
+        "name": "Show API",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 120,
+        "y": 1700,
+        "wires": [
+            [
+                "8dd95702c8691b0f"
+            ]
+        ]
+    },
+    {
+        "id": "8a5dadee22b3c60a",
+        "type": "json",
+        "z": "f2b927bb6aaa12e9",
+        "g": "37c11223f15062e0",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 650,
+        "y": 1700,
+        "wires": [
+            [
+                "d5dc0bbd0e5e9071",
+                "0fdde23598c510e2",
+                "55d13e7e469edd80",
+                "c32fb1cfd4e11f8c",
+                "fe4f739ec72b2c9f",
+                "0c6206984253d7d9",
+                "889f1f855ba752a4"
+            ]
+        ]
+    },
+    {
+        "id": "d5dc0bbd0e5e9071",
+        "type": "debug",
+        "z": "f2b927bb6aaa12e9",
+        "g": "37c11223f15062e0",
+        "name": "Api check",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1260,
+        "y": 1700,
+        "wires": []
+    },
+    {
+        "id": "6bdffba0885046eb",
+        "type": "ui_text",
+        "z": "f2b927bb6aaa12e9",
+        "g": "37c11223f15062e0",
+        "group": "c02b74b7510a2dec",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Város",
+        "format": "{{msg.payload.location.name}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1250,
+        "y": 1780,
+        "wires": []
+    },
+    {
+        "id": "bb8f815f15a1aaae",
+        "type": "ui_text",
+        "z": "f2b927bb6aaa12e9",
+        "g": "37c11223f15062e0",
+        "group": "c02b74b7510a2dec",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Ország",
+        "format": "{{msg.payload.location.country}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1260,
+        "y": 1820,
+        "wires": []
+    },
+    {
+        "id": "5edbc59639ec2a9b",
+        "type": "ui_text",
+        "z": "f2b927bb6aaa12e9",
+        "g": "37c11223f15062e0",
+        "group": "c02b74b7510a2dec",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Szél",
+        "format": "{{msg.payload.current.wind_kph}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1250,
+        "y": 1900,
+        "wires": []
+    },
+    {
+        "id": "b6f9229b2260e96c",
+        "type": "ui_text",
+        "z": "f2b927bb6aaa12e9",
+        "g": "37c11223f15062e0",
+        "group": "c02b74b7510a2dec",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Hőmérséklet",
+        "format": "{{msg.payload.current.temp_c}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1270,
+        "y": 1940,
+        "wires": []
+    },
+    {
+        "id": "120427b5e12ad4ac",
+        "type": "ui_text",
+        "z": "f2b927bb6aaa12e9",
+        "g": "37c11223f15062e0",
+        "group": "c02b74b7510a2dec",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Páratartalom",
+        "format": "{{msg.payload.current.humidity}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1270,
+        "y": 1980,
+        "wires": []
+    },
+    {
+        "id": "36de31d426cf41f8",
+        "type": "complete",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "scope": [
+            "91c102bd68ad7ddc"
+        ],
+        "uncaught": false,
+        "x": 330,
+        "y": 2560,
+        "wires": [
+            [
+                "0d78f6dc74e3ee3a"
+            ]
+        ]
+    },
+    {
+        "id": "91c102bd68ad7ddc",
+        "type": "http request",
+        "z": "f2b927bb6aaa12e9",
+        "name": "Vaku be",
+        "method": "GET",
+        "ret": "bin",
+        "paytoqs": "body",
+        "url": "192.168.0.19/control?var=flash&val=1",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 320,
+        "y": 2520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1fbab8d5bdb097a1",
+        "type": "http request",
+        "z": "f2b927bb6aaa12e9",
+        "name": "Vaku ki",
+        "method": "GET",
+        "ret": "bin",
+        "paytoqs": "body",
+        "url": "192.168.0.19/control?var=flash&val=0",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 1120,
+        "y": 2600,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "940e14b1fb738fc7",
+        "type": "complete",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "scope": [
+            "011524390d2dd06f",
+            "91c102bd68ad7ddc"
+        ],
+        "uncaught": false,
+        "x": 710,
+        "y": 2600,
+        "wires": [
+            [
+                "eb6aa09054311e3d"
+            ]
+        ]
+    },
+    {
+        "id": "eb6aa09054311e3d",
+        "type": "delay",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "250",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 930,
+        "y": 2600,
+        "wires": [
+            [
+                "1fbab8d5bdb097a1"
+            ]
+        ]
+    },
+    {
+        "id": "0d78f6dc74e3ee3a",
+        "type": "delay",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "150",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 530,
+        "y": 2560,
+        "wires": [
+            [
+                "011524390d2dd06f"
+            ]
+        ]
+    },
+    {
+        "id": "44b0a2a5b6ac55f5",
+        "type": "http request",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "body",
+        "url": "192.168.0.19/status",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 370,
+        "y": 2860,
+        "wires": [
+            [
+                "bbf6d312e2eabe4e"
+            ]
+        ]
+    },
+    {
+        "id": "f29276f81170db72",
+        "type": "inject",
+        "z": "f2b927bb6aaa12e9",
+        "name": "Get status",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 140,
+        "y": 2860,
+        "wires": [
+            [
+                "44b0a2a5b6ac55f5"
+            ]
+        ]
+    },
+    {
+        "id": "bbf6d312e2eabe4e",
+        "type": "debug",
+        "z": "f2b927bb6aaa12e9",
+        "name": "Flash check",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 610,
+        "y": 2860,
+        "wires": []
+    },
+    {
+        "id": "1a6233ef7d915906",
+        "type": "file",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "filename": "\"/home/balazs/Asztal/gas_pics/\" & (msg.topic) & \".jpg\"",
+        "filenameType": "jsonata",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1280,
+        "y": 2460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "36c9389b9885953b",
+        "type": "debug",
+        "z": "f2b927bb6aaa12e9",
+        "name": "debug 3",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1280,
+        "y": 2420,
+        "wires": []
+    },
+    {
+        "id": "8ea4ef4392599908",
+        "type": "change",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "$replace($string($now(None,\"+0200\"), true), '.','_')",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 930,
+        "y": 2460,
+        "wires": [
+            [
+                "1a6233ef7d915906",
+                "36c9389b9885953b"
+            ]
+        ]
+    },
+    {
+        "id": "9a8d0cf1bbcc69ed",
+        "type": "debug",
+        "z": "f2b927bb6aaa12e9",
+        "name": "debug 4",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 920,
+        "y": 2560,
+        "wires": []
+    },
+    {
+        "id": "18057baf9a9074c1",
+        "type": "ui_dropdown",
+        "z": "f2b927bb6aaa12e9",
+        "d": true,
+        "name": "",
+        "label": "Kamera felbontás",
+        "tooltip": "",
+        "place": "Resolution",
+        "group": "049c0ae71a1fe89d",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "1600x1200",
+                "value": "10",
+                "type": "str"
+            },
+            {
+                "label": "1280x1024",
+                "value": "9",
+                "type": "str"
+            },
+            {
+                "label": "1024x768",
+                "value": "8",
+                "type": "str"
+            },
+            {
+                "label": "800x600",
+                "value": "7",
+                "type": "str"
+            },
+            {
+                "label": "640x480",
+                "value": "6",
+                "type": "str"
+            },
+            {
+                "label": "400x296",
+                "value": "5",
+                "type": "str"
+            },
+            {
+                "label": "320x240",
+                "value": "4",
+                "type": "str"
+            },
+            {
+                "label": "240x176",
+                "value": "3",
+                "type": "str"
+            },
+            {
+                "label": "160x120",
+                "value": "0",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "resolution",
+        "topicType": "msg",
+        "className": "",
+        "x": 170,
+        "y": 2680,
+        "wires": [
+            [
+                "260f5e570c9377af"
+            ]
+        ]
+    },
+    {
+        "id": "0c6206984253d7d9",
+        "type": "ui_text",
+        "z": "f2b927bb6aaa12e9",
+        "g": "37c11223f15062e0",
+        "group": "c02b74b7510a2dec",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Dátum",
+        "format": "{{msg.payload.current.last_updated}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1250,
+        "y": 1860,
+        "wires": []
+    },
+    {
+        "id": "11bce1334317dc9b",
+        "type": "ui_dropdown",
+        "z": "f2b927bb6aaa12e9",
+        "d": true,
+        "name": "",
+        "label": "Kamera effekt",
+        "tooltip": "",
+        "place": "Effekt",
+        "group": "049c0ae71a1fe89d",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "Nincs effekt",
+                "value": "0",
+                "type": "str"
+            },
+            {
+                "label": "Negatív",
+                "value": "1",
+                "type": "str"
+            },
+            {
+                "label": "Szürkeányalatos",
+                "value": "2",
+                "type": "str"
+            },
+            {
+                "label": "Vörös",
+                "value": "3",
+                "type": "str"
+            },
+            {
+                "label": "Zöld",
+                "value": "4",
+                "type": "str"
+            },
+            {
+                "label": "Kék",
+                "value": "5",
+                "type": "str"
+            },
+            {
+                "label": "Szépia",
+                "value": "6",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "effect",
+        "topicType": "msg",
+        "className": "",
+        "x": 160,
+        "y": 2720,
+        "wires": [
+            [
+                "e495453f9f148274"
+            ]
+        ]
+    },
+    {
+        "id": "ad3566727b3d41af",
+        "type": "ui_switch",
+        "z": "f2b927bb6aaa12e9",
+        "d": true,
+        "name": "",
+        "label": "Függőleges tükrözés",
+        "tooltip": "",
+        "group": "049c0ae71a1fe89d",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "v_flip",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "1",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "0",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 180,
+        "y": 2760,
+        "wires": [
+            [
+                "ca0c3a5ec5b5a509"
+            ]
+        ]
+    },
+    {
+        "id": "3ac0577a87f7d240",
+        "type": "ui_switch",
+        "z": "f2b927bb6aaa12e9",
+        "d": true,
+        "name": "",
+        "label": "Vízszintes tükrözés",
+        "tooltip": "",
+        "group": "049c0ae71a1fe89d",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "decouple": "false",
+        "topic": "h_mirror",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "1",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "0",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 170,
+        "y": 2800,
+        "wires": [
+            [
+                "c7cce9e8c6b9c483"
+            ]
+        ]
+    },
+    {
+        "id": "4c26fe7caf5f313b",
+        "type": "debug",
+        "z": "f2b927bb6aaa12e9",
+        "name": "debug 5",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1120,
+        "y": 2760,
+        "wires": []
+    },
+    {
+        "id": "b471ff22278fda06",
+        "type": "function",
+        "z": "f2b927bb6aaa12e9",
+        "name": "function 3",
+        "func": "msg.payload = \"?var=\" + msg.topic + \"&val=\" + msg.payload;\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 2760,
+        "wires": [
+            [
+                "31c401bf3dad9f8b"
+            ]
+        ]
+    },
+    {
+        "id": "c7cce9e8c6b9c483",
+        "type": "change",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "hmirror",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 370,
+        "y": 2800,
+        "wires": [
+            [
+                "b471ff22278fda06"
+            ]
+        ]
+    },
+    {
+        "id": "ca0c3a5ec5b5a509",
+        "type": "change",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "vflip",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 370,
+        "y": 2760,
+        "wires": [
+            [
+                "b471ff22278fda06"
+            ]
+        ]
+    },
+    {
+        "id": "e495453f9f148274",
+        "type": "change",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "special_effect",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 370,
+        "y": 2720,
+        "wires": [
+            [
+                "b471ff22278fda06"
+            ]
+        ]
+    },
+    {
+        "id": "260f5e570c9377af",
+        "type": "change",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "framesize",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 370,
+        "y": 2680,
+        "wires": [
+            [
+                "b471ff22278fda06"
+            ]
+        ]
+    },
+    {
+        "id": "40bf174ecd246897",
+        "type": "http request",
+        "z": "f2b927bb6aaa12e9",
+        "name": "Kamera konfig",
+        "method": "GET",
+        "ret": "bin",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 960,
+        "y": 2760,
+        "wires": [
+            [
+                "4c26fe7caf5f313b"
+            ]
+        ]
+    },
+    {
+        "id": "31c401bf3dad9f8b",
+        "type": "change",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "url",
+                "pt": "msg",
+                "to": "\"192.168.0.19/control\" & (msg.payload)",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 770,
+        "y": 2760,
+        "wires": [
+            [
+                "40bf174ecd246897"
+            ]
+        ]
+    },
+    {
+        "id": "811cb660b717f4da",
+        "type": "ui_button",
+        "z": "f2b927bb6aaa12e9",
+        "d": true,
+        "name": "",
+        "group": "049c0ae71a1fe89d",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Fénykép készítése",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 170,
+        "y": 2640,
+        "wires": [
+            [
+                "f415343383dbed41"
+            ]
+        ]
+    },
+    {
+        "id": "d0b2dc15156a64fc",
+        "type": "link in",
+        "z": "f2b927bb6aaa12e9",
+        "name": "link in 1",
+        "links": [
+            "f415343383dbed41"
+        ],
+        "x": 165,
+        "y": 2560,
+        "wires": [
+            [
+                "91c102bd68ad7ddc"
+            ]
+        ]
+    },
+    {
+        "id": "f415343383dbed41",
+        "type": "link out",
+        "z": "f2b927bb6aaa12e9",
+        "name": "link out 1",
+        "mode": "link",
+        "links": [
+            "d0b2dc15156a64fc"
+        ],
+        "x": 315,
+        "y": 2640,
+        "wires": []
+    },
+    {
+        "id": "44912df8e3f6c9a0",
+        "type": "debug",
+        "z": "f2b927bb6aaa12e9",
+        "name": "debug 6",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 440,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "e86f102374e26fe8",
+        "type": "ui_button",
+        "z": "f2b927bb6aaa12e9",
+        "d": true,
+        "name": "",
+        "group": "049c0ae71a1fe89d",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Fénykép készítése vaku nélkül",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 210,
+        "y": 2460,
+        "wires": [
+            [
+                "66ce242267a8a578"
+            ]
+        ]
+    },
+    {
+        "id": "66ce242267a8a578",
+        "type": "http request",
+        "z": "f2b927bb6aaa12e9",
+        "name": "Fénykép kérés",
+        "method": "GET",
+        "ret": "bin",
+        "paytoqs": "body",
+        "url": "192.168.0.19/capture",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 720,
+        "y": 2460,
+        "wires": [
+            [
+                "27912e9d5159ee46",
+                "8ea4ef4392599908"
+            ]
+        ]
+    },
+    {
+        "id": "af10cc5bb19b32d4",
+        "type": "ui_text",
+        "z": "f2b927bb6aaa12e9",
+        "group": "ef1a7b7c4efedee8",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "acc.x",
+        "format": "{{msg.payload.acceleration_x}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 630,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "3e31e700bd75db13",
+        "type": "ui_text",
+        "z": "f2b927bb6aaa12e9",
+        "group": "ef1a7b7c4efedee8",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "acc.y",
+        "format": "{{msg.payload.acceleration_y}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 630,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "c3f9164f4fb138a7",
+        "type": "ui_text",
+        "z": "f2b927bb6aaa12e9",
+        "group": "ef1a7b7c4efedee8",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "acc.z",
+        "format": "{{msg.payload.acceleration_z}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 630,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "86dbaa41fd6914a0",
+        "type": "ui_gauge",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "group": "ef1a7b7c4efedee8",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "x-tengely",
+        "label": "units",
+        "format": "{{msg.payload.acceleration_x}}",
+        "min": "-10",
+        "max": "10",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 760,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "2c7636f127e1dd06",
+        "type": "ui_gauge",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "group": "ef1a7b7c4efedee8",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "y-tengely",
+        "label": "units",
+        "format": "{{msg.payload.acceleration_y}}",
+        "min": "-10",
+        "max": "10",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 760,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "c513de04f3b3888b",
+        "type": "ui_gauge",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "group": "ef1a7b7c4efedee8",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "z-tengely",
+        "label": "units",
+        "format": "{{msg.payload.acceleration_z}}",
+        "min": "-10",
+        "max": "10",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 760,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "0fdde23598c510e2",
+        "type": "change",
+        "z": "f2b927bb6aaa12e9",
+        "g": "37c11223f15062e0",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.current.wind_kph",
+                "pt": "msg",
+                "to": "(msg.payload.current.wind_kph) & \" km/h\"",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1040,
+        "y": 1900,
+        "wires": [
+            [
+                "5edbc59639ec2a9b"
+            ]
+        ]
+    },
+    {
+        "id": "55d13e7e469edd80",
+        "type": "change",
+        "z": "f2b927bb6aaa12e9",
+        "g": "37c11223f15062e0",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.current.temp_c",
+                "pt": "msg",
+                "to": "(msg.payload.current.temp_c)  &  \" °C\"",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1030,
+        "y": 1940,
+        "wires": [
+            [
+                "b6f9229b2260e96c"
+            ]
+        ]
+    },
+    {
+        "id": "c32fb1cfd4e11f8c",
+        "type": "ui_template",
+        "z": "f2b927bb6aaa12e9",
+        "g": "37c11223f15062e0",
+        "group": "c02b74b7510a2dec",
+        "name": "png icon",
+        "order": 1,
+        "width": "2",
+        "height": "2",
+        "format": "<div style=\"margin: auto;\"><img src={{msg.payload.current.condition.icon}}></img></div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1260,
+        "y": 1740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fe4f739ec72b2c9f",
+        "type": "change",
+        "z": "f2b927bb6aaa12e9",
+        "g": "37c11223f15062e0",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.current.humidity",
+                "pt": "msg",
+                "to": "(msg.payload.current.humidity)  &  \"  %\"",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1040,
+        "y": 1980,
+        "wires": [
+            [
+                "120427b5e12ad4ac"
+            ]
+        ]
+    },
+    {
+        "id": "ff724e7f1d01be1c",
+        "type": "function",
+        "z": "f2b927bb6aaa12e9",
+        "name": "giroszkóp",
+        "func": "msg.payload.acceleration_z = parseFloat(msg.payload.acceleration_z).toPrecision(3);\nmsg.payload.acceleration_y = parseFloat(msg.payload.acceleration_y).toPrecision(3);\nmsg.payload.acceleration_x = parseFloat(msg.payload.acceleration_x).toPrecision(3);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 220,
+        "wires": [
+            [
+                "af10cc5bb19b32d4",
+                "3e31e700bd75db13",
+                "c3f9164f4fb138a7",
+                "c513de04f3b3888b",
+                "2c7636f127e1dd06",
+                "86dbaa41fd6914a0"
+            ]
+        ]
+    },
+    {
+        "id": "851a3a8b35cd1f6d",
+        "type": "function",
+        "z": "f2b927bb6aaa12e9",
+        "name": "távolság",
+        "func": "msg.payload =  parseInt(msg.payload.distanceCm);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 360,
+        "wires": [
+            [
+                "9da621ebc50eb1bc"
+            ]
+        ]
+    },
+    {
+        "id": "dde8922b7fc28cfb",
+        "type": "ui_button",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "group": "c02b74b7510a2dec",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Frissítés",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 120,
+        "y": 1580,
+        "wires": [
+            [
+                "7d932fe7e41681cc"
+            ]
+        ]
+    },
+    {
+        "id": "c06751f5d8534176",
+        "type": "complete",
+        "z": "f2b927bb6aaa12e9",
+        "g": "37c11223f15062e0",
+        "name": "",
+        "scope": [
+            "836bf90cce308376"
+        ],
+        "uncaught": false,
+        "x": 130,
+        "y": 1740,
+        "wires": [
+            [
+                "8dd95702c8691b0f"
+            ]
+        ]
+    },
+    {
+        "id": "889f1f855ba752a4",
+        "type": "function",
+        "z": "f2b927bb6aaa12e9",
+        "g": "37c11223f15062e0",
+        "name": "function 4",
+        "func": "if (msg.payload.location.name == \"Kiskoros\"){\n    msg.payload.location.name = \"Kiskőrös\"\n}\nif (msg.payload.location.country == \"Hungary\") {\n    msg.payload.location.country = \"Magyarország\"\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1080,
+        "y": 1780,
+        "wires": [
+            [
+                "6bdffba0885046eb",
+                "bb8f815f15a1aaae"
+            ]
+        ]
+    },
+    {
+        "id": "406da667d642e8fa",
+        "type": "watch",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "files": "/home/balazs/Asztal/gas_pics/",
+        "recursive": "",
+        "x": 980,
+        "y": 480,
+        "wires": [
+            [
+                "32e2c79fb2ea179d"
+            ]
+        ]
+    },
+    {
+        "id": "32e2c79fb2ea179d",
+        "type": "debug",
+        "z": "f2b927bb6aaa12e9",
+        "name": "debug 7",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1280,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "f113149e0f21e186",
+        "type": "mqtt in",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "topic": "esp_cam_1/from_esp",
+        "qos": "1",
+        "datatype": "auto-detect",
+        "broker": "28440418ba8bdd99",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 260,
+        "y": 700,
+        "wires": [
+            [
+                "f5852762ee722ddb",
+                "829660d2843cb91c",
+                "712b16205c1f9564"
+            ]
+        ]
+    },
+    {
+        "id": "2d1d05a5cb11cd96",
+        "type": "mqtt out",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "topic": "esp_cam_1/photo",
+        "qos": "1",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "28440418ba8bdd99",
+        "x": 690,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "f5852762ee722ddb",
+        "type": "debug",
+        "z": "f2b927bb6aaa12e9",
+        "name": "debug 8",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 580,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "829660d2843cb91c",
+        "type": "jimp-image",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "data": "payload",
+        "dataType": "msg",
+        "ret": "b64",
+        "parameter1": "",
+        "parameter1Type": "msg",
+        "parameter2": "",
+        "parameter2Type": "msg",
+        "parameter3": "",
+        "parameter3Type": "msg",
+        "parameter4": "",
+        "parameter4Type": "msg",
+        "parameter5": "",
+        "parameter5Type": "msg",
+        "parameter6": "",
+        "parameter6Type": "msg",
+        "parameter7": "",
+        "parameter7Type": "msg",
+        "parameter8": "",
+        "parameter8Type": "msg",
+        "sendProperty": "payload",
+        "sendPropertyType": "msg",
+        "parameterCount": 0,
+        "jimpFunction": "none",
+        "selectedJimpFunction": {
+            "name": "none",
+            "fn": "none",
+            "description": "Just loads the image.",
+            "parameters": []
+        },
+        "x": 590,
+        "y": 740,
+        "wires": [
+            [
+                "7d1f2157f56e613d",
+                "647fb2f3a03244a5"
+            ]
+        ]
+    },
+    {
+        "id": "7d1f2157f56e613d",
+        "type": "image viewer",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "width": 160,
+        "data": "payload",
+        "dataType": "msg",
+        "active": true,
+        "x": 1030,
+        "y": 740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "647fb2f3a03244a5",
+        "type": "ui_template",
+        "z": "f2b927bb6aaa12e9",
+        "group": "049c0ae71a1fe89d",
+        "name": "",
+        "order": 1,
+        "width": "7",
+        "height": "6",
+        "format": "<div style=\"display: inline-block; margin:0 auto\"><img src=\"{{msg.payload}}\"></img></div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 760,
+        "y": 700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "db96708c4d6a91ce",
+        "type": "inject",
+        "z": "f2b927bb6aaa12e9",
+        "name": "esp-cam-1 ",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 120,
+        "y": 1160,
+        "wires": [
+            [
+                "2d1d05a5cb11cd96"
+            ]
+        ]
+    },
+    {
+        "id": "dfff2875e30ba62a",
+        "type": "inject",
+        "z": "f2b927bb6aaa12e9",
+        "name": "esp-cam-2",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 120,
+        "y": 980,
+        "wires": [
+            [
+                "1a96fd218c0960eb"
+            ]
+        ]
+    },
+    {
+        "id": "1a96fd218c0960eb",
+        "type": "mqtt out",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "topic": "esp_cam_2/photo",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "28440418ba8bdd99",
+        "x": 370,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "fded1d04f68b530b",
+        "type": "ui_button",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "group": "b531cee8a8d43ac1",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "esp-cam-2",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 110,
+        "y": 1020,
+        "wires": [
+            [
+                "1a96fd218c0960eb"
+            ]
+        ]
+    },
+    {
+        "id": "f7c4f6d9de5599a1",
+        "type": "ui_button",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "group": "b531cee8a8d43ac1",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "esp-cam-1",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 110,
+        "y": 1120,
+        "wires": [
+            [
+                "2d1d05a5cb11cd96"
+            ]
+        ]
+    },
+    {
+        "id": "141444e0f870c622",
+        "type": "inject",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 970,
+        "y": 320,
+        "wires": [
+            [
+                "3c3408c55e16a651",
+                "6f347f61868dcbb1"
+            ]
+        ]
+    },
+    {
+        "id": "3c3408c55e16a651",
+        "type": "debug",
+        "z": "f2b927bb6aaa12e9",
+        "name": "debug 9",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1260,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "712b16205c1f9564",
+        "type": "change",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "$replace($string($now(None,\"+0200\"), true), '.','_')",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 590,
+        "y": 660,
+        "wires": [
+            [
+                "16db439fe5628460"
+            ]
+        ]
+    },
+    {
+        "id": "16db439fe5628460",
+        "type": "file",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "filename": "\"/home/balazs/Asztal/gas_pics/\" & (msg.topic) & \".jpg\"",
+        "filenameType": "jsonata",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 880,
+        "y": 660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "86f91821f3e37754",
+        "type": "mqtt in",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "topic": "esp_cam_2/from_esp",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "28440418ba8bdd99",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 580,
+        "y": 1020,
+        "wires": [
+            [
+                "a028d3a66d54f0dd",
+                "8d32dac8ea6b2408",
+                "c661744f97765f76"
+            ]
+        ]
+    },
+    {
+        "id": "a028d3a66d54f0dd",
+        "type": "debug",
+        "z": "f2b927bb6aaa12e9",
+        "name": "debug 10",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 920,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "8d32dac8ea6b2408",
+        "type": "jimp-image",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "data": "payload",
+        "dataType": "msg",
+        "ret": "b64",
+        "parameter1": "",
+        "parameter1Type": "msg",
+        "parameter2": "",
+        "parameter2Type": "msg",
+        "parameter3": "",
+        "parameter3Type": "msg",
+        "parameter4": "",
+        "parameter4Type": "msg",
+        "parameter5": "",
+        "parameter5Type": "msg",
+        "parameter6": "",
+        "parameter6Type": "msg",
+        "parameter7": "",
+        "parameter7Type": "msg",
+        "parameter8": "",
+        "parameter8Type": "msg",
+        "sendProperty": "payload",
+        "sendPropertyType": "msg",
+        "parameterCount": 0,
+        "jimpFunction": "none",
+        "selectedJimpFunction": {
+            "name": "none",
+            "fn": "none",
+            "description": "Just loads the image.",
+            "parameters": []
+        },
+        "x": 910,
+        "y": 1060,
+        "wires": [
+            [
+                "e8505b18292affb6",
+                "d4711ceb7ab1b7e8"
+            ]
+        ]
+    },
+    {
+        "id": "e8505b18292affb6",
+        "type": "image viewer",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "width": 160,
+        "data": "payload",
+        "dataType": "msg",
+        "active": true,
+        "x": 1290,
+        "y": 1060,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d4711ceb7ab1b7e8",
+        "type": "ui_template",
+        "z": "f2b927bb6aaa12e9",
+        "group": "b531cee8a8d43ac1",
+        "name": "",
+        "order": 1,
+        "width": "7",
+        "height": "6",
+        "format": "<div style=\"display: inline-block; margin:0 auto\"><img src=\"{{msg.payload}}\"></img></div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1300,
+        "y": 1020,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c661744f97765f76",
+        "type": "change",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "$replace($string($now(None,\"+0200\"), true), '.','_')",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 930,
+        "y": 1020,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2e861f514e076f82",
+        "type": "comment",
+        "z": "f2b927bb6aaa12e9",
+        "name": "Óránként egy kép készül",
+        "info": "",
+        "x": 270,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "1f4ae3b7fb39a089",
+        "type": "mqtt in",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "topic": "home-assistant/test",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "28440418ba8bdd99",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 170,
+        "y": 900,
+        "wires": [
+            [
+                "1f737ca551de692a"
+            ]
+        ]
+    },
+    {
+        "id": "1f737ca551de692a",
+        "type": "debug",
+        "z": "f2b927bb6aaa12e9",
+        "name": "debug 11",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 480,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "6f347f61868dcbb1",
+        "type": "mqtt out",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "topic": "hoa",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "28440418ba8bdd99",
+        "x": 1250,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "63bd3fec3ed0f445",
+        "type": "mqtt in",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "topic": "top",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "28440418ba8bdd99",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 670,
+        "y": 880,
+        "wires": [
+            [
+                "51539082356754fe"
+            ]
+        ]
+    },
+    {
+        "id": "51539082356754fe",
+        "type": "debug",
+        "z": "f2b927bb6aaa12e9",
+        "name": "debug 12",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 860,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "f9f334835f574a28",
+        "type": "mqtt in",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "topic": "esp_cam_1/from_esp",
+        "qos": "1",
+        "datatype": "auto-detect",
+        "broker": "28440418ba8bdd99",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 600,
+        "y": 1120,
+        "wires": [
+            [
+                "8d32dac8ea6b2408",
+                "c661744f97765f76",
+                "a028d3a66d54f0dd"
+            ]
+        ]
+    },
+    {
+        "id": "76841c6766dd4fb8",
+        "type": "mqtt in",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "topic": "esp_cam_1/hello_pub",
+        "qos": "1",
+        "datatype": "auto-detect",
+        "broker": "28440418ba8bdd99",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 740,
+        "y": 1160,
+        "wires": [
+            [
+                "048bfc81c9d9dadd"
+            ]
+        ]
+    },
+    {
+        "id": "048bfc81c9d9dadd",
+        "type": "debug",
+        "z": "f2b927bb6aaa12e9",
+        "name": "debug 13",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 940,
+        "y": 1160,
+        "wires": []
+    },
+    {
+        "id": "b8f6668026cc56fb",
+        "type": "mqtt out",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "topic": "esp_cam_1/hello",
+        "qos": "1",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "28440418ba8bdd99",
+        "x": 510,
+        "y": 1160,
+        "wires": []
+    },
+    {
+        "id": "c8e53ffef600ced4",
+        "type": "inject",
+        "z": "f2b927bb6aaa12e9",
+        "name": "Say hello",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 120,
+        "y": 1200,
+        "wires": [
+            [
+                "b8f6668026cc56fb"
+            ]
+        ]
+    },
+    {
+        "id": "63611d821b354f0b",
+        "type": "mqtt out",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "topic": "esp_cam_1/sleep",
+        "qos": "1",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "28440418ba8bdd99",
+        "x": 450,
+        "y": 1280,
+        "wires": []
+    },
+    {
+        "id": "20bbdffce51c3ea4",
+        "type": "inject",
+        "z": "f2b927bb6aaa12e9",
+        "name": "Go sleep",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "300",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 130,
+        "y": 1240,
+        "wires": [
+            [
+                "63611d821b354f0b",
+                "5c68e138c83ba0d1"
+            ]
+        ]
+    },
+    {
+        "id": "8b80b695e693fd89",
+        "type": "comment",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "info": "http://arduino.esp8266.com/stable/package_esp8266com_index.json\nhttps://dl.espressif.com/dl/package_esp32_index.json",
+        "x": 100,
+        "y": 1320,
+        "wires": []
+    },
+    {
+        "id": "5c68e138c83ba0d1",
+        "type": "delay",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "7",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 480,
+        "y": 1320,
+        "wires": [
+            [
+                "2d1d05a5cb11cd96"
+            ]
+        ]
+    },
+    {
+        "id": "d19452c1dd40a4ba",
+        "type": "mqtt in",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "topic": "esp_cam_1/ready",
+        "qos": "1",
+        "datatype": "auto-detect",
+        "broker": "28440418ba8bdd99",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 790,
+        "y": 1360,
+        "wires": [
+            [
+                "4710cc63e098a52d"
+            ]
+        ]
+    },
+    {
+        "id": "4710cc63e098a52d",
+        "type": "debug",
+        "z": "f2b927bb6aaa12e9",
+        "name": "debug 14",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 980,
+        "y": 1360,
+        "wires": []
+    },
+    {
+        "id": "726d9009053701c9",
+        "type": "inject",
+        "z": "f2b927bb6aaa12e9",
+        "name": "Go sleep",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 160,
+        "y": 1380,
+        "wires": [
+            [
+                "63611d821b354f0b",
+                "5c68e138c83ba0d1"
+            ]
+        ]
+    },
+    {
+        "id": "ac5f91eacc169554",
+        "type": "ui_button",
+        "z": "f2b927bb6aaa12e9",
+        "name": "",
+        "group": "b531cee8a8d43ac1",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "sleep",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 150,
+        "y": 1440,
+        "wires": [
+            [
+                "63611d821b354f0b",
+                "5c68e138c83ba0d1"
+            ]
+        ]
+    },
+    {
+        "id": "09668dd69dde87cc",
+        "type": "ui_spacer",
+        "z": "f2b927bb6aaa12e9",
+        "name": "spacer",
+        "group": "e8da300679403f68",
+        "order": 1,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "c3497802bd68af64",
+        "type": "ui_spacer",
+        "z": "f2b927bb6aaa12e9",
+        "name": "spacer",
+        "group": "57c9463ffaabef93",
+        "order": 2,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "e8da300679403f68",
+        "type": "ui_group",
+        "name": "Szenzorok",
+        "tab": "fe7dc78c8199f2dd",
+        "order": 4,
+        "disp": true,
+        "width": "4",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "28440418ba8bdd99",
+        "type": "mqtt-broker",
+        "name": "Broker",
+        "broker": "192.168.0.33",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "57c9463ffaabef93",
+        "type": "ui_group",
+        "name": "Aktuátorok",
+        "tab": "fe7dc78c8199f2dd",
+        "order": 6,
+        "disp": true,
+        "width": "3",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "a445154950292260",
+        "type": "rapidapi-config",
+        "name": "WeatherAPI"
+    },
+    {
+        "id": "c02b74b7510a2dec",
+        "type": "ui_group",
+        "name": "Időjárás API",
+        "tab": "fe7dc78c8199f2dd",
+        "order": 1,
+        "disp": true,
+        "width": "7",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "049c0ae71a1fe89d",
+        "type": "ui_group",
+        "name": "Kamera",
+        "tab": "fe7dc78c8199f2dd",
+        "order": 2,
+        "disp": true,
+        "width": "7",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "ef1a7b7c4efedee8",
+        "type": "ui_group",
+        "name": "Giroszkóp",
+        "tab": "fe7dc78c8199f2dd",
+        "order": 5,
+        "disp": true,
+        "width": "3",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "b531cee8a8d43ac1",
+        "type": "ui_group",
+        "name": "Kamera 2",
+        "tab": "fe7dc78c8199f2dd",
+        "order": 3,
+        "disp": true,
+        "width": "7",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "fe7dc78c8199f2dd",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
