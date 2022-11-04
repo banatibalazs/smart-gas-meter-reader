@@ -8,7 +8,7 @@ import tensorflow as tf
 
 tf.get_logger().setLevel('ERROR')
 
-DATA_DIR = "train_images/"
+DATA_DIR = "images/"
 BATCH_SIZE = None
 IMG_HEIGHT = 28
 IMG_WIDTH = 28
@@ -65,7 +65,7 @@ np.save("datasets/train_y", conc_train_y)
 np.save("datasets/test_x", conc_test_x)
 np.save("datasets/test_y", conc_test_y)
 
-#Plot train_images from concatenated dataset
+#Plot images from concatenated dataset
 IM_NUMBER = 64
 
 idx = np.random.permutation(len(conc_train_x))
