@@ -1,5 +1,14 @@
 import matplotlib.pyplot as plt
 import pandas as pd
+import math
+import cv2
+import numpy as np
+from tflite_support.task import vision
+import traceback
+import os
+
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+import tensorflow as tf
 
 
 
@@ -25,18 +34,6 @@ def plot_csv_metrics(path):
     plt.title('Loss')
     plt.xlabel('Epochs')
     plt.legend()
-
-import math
-import cv2
-import numpy as np
-from tflite_support.task import vision
-import traceback
-
-import os
-
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
-import tensorflow as tf
-from tensorflow.python.keras import layers, models
 
 
 def balancing_tilted_image(image, greyscale_image, balancing_cycles):
