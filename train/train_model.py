@@ -14,15 +14,14 @@ def scheduler(epoch, lr):
   else:
     return lr * tf.math.exp(-0.1)
 
-CALLBACKS = [tf.keras.callbacks.ModelCheckpoint(MODEL_PATH + '_{epoch:03d}-{val_loss:.3f}_.h5', monitor='val_accuracy', save_best_only=True),
+CALLBACKS = [tf.keras.callbacks.ModelCheckpoint(MODEL_PATH + 'model-{val_loss:.3f}_.h5',
+                                                monitor='val_accuracy', save_best_only=True),
              tf.keras.callbacks.LearningRateScheduler(scheduler, verbose=1),
              tf.keras.callbacks.CSVLogger(MODEL_PATH + "training.csv", separator=",")]
 
 # Load datasets
-train_x = np.load(DATA_PATH + "train_x.npy")
-train_y = np.load(DATA_PATH + "train_y.npy")
-test_x = np.load(DATA_PATH + "test_x.npy")
-test_y = np.load(DATA_PATH + "test_y.npy")
+train_x, train_y = np.load(DATA_PATH + "train_x.npy"), np.load(DATA_PATH + "train_y.npy")
+test_x, test_y = np.load(DATA_PATH + "test_x.npy"), np.load(DATA_PATH + "test_y.npy")
 
 
 # Create new model
