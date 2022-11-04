@@ -24,6 +24,7 @@ CLASSIFICATION_MODEL_PATH = '../train/models/_020-0.023_.h5'
 SOURCE_IMG_PATH = "./images/"
 RESULT_IMG_PATH = "./results/predictions/"
 INTERMEDIATE_IMG_PATH = "./results/intermediate_results/"
+UNPROCESSED_IMG_PATH = "./results/unprocessed_images/"
 
 # Parameters of object detection
 WIDTH = 1000
@@ -55,39 +56,39 @@ h_w_ratio_max = 3
 h_w_ratio_min = 1.25
 
 
-def analyze(image, object_detector, classification_model, filename):
-    greyscale_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+def analyze(cur_image, object_detector, cl_model, fname):
+    greyscale_image = cv2.cvtColor(cur_image, cv2.COLOR_BGR2GRAY)
 
     # Balance tilted images
-    balanced_image = balancing_tilted_image(image, greyscale_image, balancing_cycles)
-    cv2.imwrite(f'{INTERMEDIATE_IMG_PATH}0_balanced_images/' + filename, balanced_image)
+    balanced_image = balancing_tilted_image(cur_image, greyscale_image, balancing_cycles)
+    cv2.imwrite(f'{INTERMEDIATE_IMG_PATH}0_balanced_images/' + fname, balanced_image)
 
     # Object detector detects the number plates and crops out detected area.
     detected_image = detect_numberplate(object_detector, balanced_image)
-    cv2.imwrite(f'{INTERMEDIATE_IMG_PATH}1_detected_images/' + filename, detected_image)
+    cv2.imwrite(f'{INTERMEDIATE_IMG_PATH}1_detected_images/' + fname, detected_image)
 
     # Resize and sharpen image
     resized_sharp_image = resize_and_sharpen_image(detected_image, DIM, tb_w, tb_th, tb_blur_size, tb_blur_sigma)
-    cv2.imwrite(f'{INTERMEDIATE_IMG_PATH}2_resized_and_sharp_images/' + filename, resized_sharp_image)
+    cv2.imwrite(f'{INTERMEDIATE_IMG_PATH}2_resized_and_sharp_images/' + fname, resized_sharp_image)
 
     # Niblack threshold and median-blur
     threshold_image = adaptive_threshold_and_median_blur(resized_sharp_image, blockSize, k)
 
-    IMG_WIDTH = classification_model.layers[0].input_shape[1]
-    IMG_HEIGHT = classification_model.layers[0].input_shape[2]
+    IMG_WIDTH = cl_model.layers[0].input_shape[1]
+    IMG_HEIGHT = cl_model.layers[0].input_shape[2]
 
     # Contours and clip image into 8 pieces
     image_list, threshold_im = find_contours(threshold_image, resized_sharp_image, IMG_WIDTH, IMG_HEIGHT, h_min=h_min,
                                              w_min=w_min, w_max=w_max, x_min=x_min, x_max=x_max,
                                              h_w_ratio_max=h_w_ratio_max, h_w_ratio_min=h_w_ratio_min)
-    cv2.imwrite(f'{INTERMEDIATE_IMG_PATH}/3_threshold_images/' + filename, threshold_im)
+    cv2.imwrite(f'{INTERMEDIATE_IMG_PATH}/3_threshold_images/' + fname, threshold_im)
 
     tensor = tf.image.rgb_to_grayscale(image_list)
-    prediction_array = np.argmax(classification_model.predict(tensor, verbose=False), axis=1)
+    prediction_array = np.argmax(cl_model.predict(tensor, verbose=False), axis=1)
     prediction_str = ''.join([str(num) for num in prediction_array])
 
     for j, im in enumerate(image_list):
-        cv2.imwrite(f'{RESULT_IMG_PATH}{prediction_array[j]}/' + '_' + filename, im)
+        cv2.imwrite(f'{RESULT_IMG_PATH}{prediction_array[j]}/' + '_' + fname, im)
 
     return prediction_str, resized_sharp_image, image_list
 
@@ -144,6 +145,7 @@ if __name__ == '__main__':
             # print(img_path, e)
             skipped_images.append(img_path)
             try:
-                cv2.imwrite("Unprocessed_images/" + f"{filename_list[i]}_" + ".jpg", image)
+                cv2.imwrite(UNPROCESSED_IMG_PATH + f"{filename_list[i]}_" + ".jpg", image)
             except Exception as exc:
                 print(exc, "--------------")
+
