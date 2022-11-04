@@ -6,15 +6,13 @@ import math
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 import tensorflow as tf
 
-MODEL_PATH = '../train/models/_023-0.026_.h5'
+MODEL_PATH = '../train/models/_020-0.023_.h5'
 DATA_PATH = '../train/datasets/'
+PREDICT_ON_TEST = False
 
 # Load data
-train_x = np.load(DATA_PATH + "train_x.npy")
-train_y = np.load(DATA_PATH + "train_y.npy")
-test_x = np.load(DATA_PATH + "test_x.npy")
-test_y = np.load(DATA_PATH + "test_y.npy")
-
+train_x, train_y = np.load(DATA_PATH + "train_x.npy"), np.load(DATA_PATH + "train_y.npy")
+test_x, test_y = np.load(DATA_PATH + "test_x.npy"), np.load(DATA_PATH + "test_y.npy")
 
 # Load model
 model = tf.keras.models.load_model(MODEL_PATH)
@@ -24,16 +22,13 @@ model.compile(optimizer=optimizer,
               metrics=['accuracy'])
 
 # Evaluate model on train and test
-model.evaluate(train_x, train_y)
+# model.evaluate(train_x, train_y)
 model.evaluate(test_x, test_y)
 
 # List mispredicted images
-
-# Eval on train dataset
-images, labels = train_x, train_y
-# images, labels = test_x, test_y
-
+images, labels = (test_x, test_y) if PREDICT_ON_TEST else (train_x, train_y)
 prediction = model.predict(images)
+
 
 all_class_predictions = prediction
 predictions = np.argmax(prediction, axis=1)
