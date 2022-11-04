@@ -1,4 +1,3 @@
-import keras.models
 import numpy as np
 import tensorflow as tf
 from helper_functions import create_model
