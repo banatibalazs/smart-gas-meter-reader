@@ -60,6 +60,11 @@ conc_test_x = np.concatenate((test_x, x_test), axis=0)
 conc_test_y = np.concatenate((test_y, y_test), axis=0)
 
 #Save datasets
+np.save("datasets/without_mnist/train_x", train_x)
+np.save("datasets/without_mnist/train_y", train_y)
+np.save("datasets/without_mnist/test_x", test_x)
+np.save("datasets/without_mnist/test_y", test_y)
+
 np.save("datasets/train_x", conc_train_x)
 np.save("datasets/train_y", conc_train_y)
 np.save("datasets/test_x", conc_test_x)

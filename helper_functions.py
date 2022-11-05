@@ -200,27 +200,53 @@ def find_contours(threshold_im, original_im, img_width, img_height, h_min=50, w_
 #     # tf.keras.layers.RandomContrast(0.5)
 # ])
 
+# def create_model():
+#     model = tf.keras.models.Sequential([
+#         tf.keras.layers.Rescaling(1. / 255),
+#         tf.keras.layers.RandomRotation(0.15),
+#         tf.keras.layers.Conv2D(32, (3, 3), activation='relu'),
+#         tf.keras.layers.Conv2D(32, (3, 3), activation='relu'),
+#         # tf.keras.layers.BatchNormalization(),
+#         tf.keras.layers.Conv2D(32, (3, 3), activation='relu'),
+#         # tf.keras.layers.BatchNormalization(),
+#         tf.keras.layers.MaxPooling2D((2, 2)),
+#         tf.keras.layers.Conv2D(64, (3, 3), activation='relu'),
+#         # tf.keras.layers.BatchNormalization(),
+#         tf.keras.layers.MaxPooling2D((2, 2)),
+#         tf.keras.layers.Conv2D(64, (3, 3), activation='relu'),
+#         # tf.keras.layers.BatchNormalization(),
+#         tf.keras.layers.Flatten(),
+#         tf.keras.layers.Dense(128, activation='relu'),
+#         tf.keras.layers.Dense(10, activation='softmax')
+#     ])
+#
+#     return model
+
 def create_model():
-    model = tf.keras.models.Sequential([
-        tf.keras.layers.Rescaling(1. / 255),
-        tf.keras.layers.RandomRotation(0.15),
-        tf.keras.layers.Conv2D(32, (3, 3), activation='relu'),
-        tf.keras.layers.BatchNormalization(),
-        tf.keras.layers.Conv2D(32, (3, 3), activation='relu'),
-        tf.keras.layers.BatchNormalization(),
-        tf.keras.layers.MaxPooling2D((2, 2)),
-        tf.keras.layers.Conv2D(64, (3, 3), activation='relu'),
-        tf.keras.layers.BatchNormalization(),
-        tf.keras.layers.MaxPooling2D((2, 2)),
-        tf.keras.layers.Conv2D(64, (3, 3), activation='relu'),
-        tf.keras.layers.BatchNormalization(),
-        tf.keras.layers.Flatten(),
-        tf.keras.layers.Dense(128, activation='relu'),
-        tf.keras.layers.Dense(10, activation='softmax')
+    resize_and_rescale = tf.keras.Sequential([
+        # tf.keras.layers.Resizing(IMG_WIDTH, IMG_HEIGHT),
+        tf.keras.layers.Rescaling(1. / 255)
     ])
 
-    return model
+    data_augmentation = tf.keras.Sequential([
+        tf.keras.layers.RandomRotation(0.15)
+        # tf.keras.layers.RandomContrast(0.5)
+    ])
 
+    model = tf.keras.models.Sequential()
+    model.add(resize_and_rescale)
+    model.add(data_augmentation)
+    model.add(tf.keras.layers.Conv2D(32, (3, 3), activation='relu'))
+    model.add(tf.keras.layers.Conv2D(32, (3, 3), activation='relu'))
+    model.add(tf.keras.layers.MaxPooling2D((2, 2)))
+    model.add(tf.keras.layers.Conv2D(64, (3, 3), activation='relu'))
+    model.add(tf.keras.layers.MaxPooling2D((2, 2)))
+    model.add(tf.keras.layers.Conv2D(64, (3, 3), activation='relu'))
+    model.add(tf.keras.layers.Flatten())
+    model.add(tf.keras.layers.Dense(128, activation='relu'))
+    model.add(tf.keras.layers.Dense(10, activation='softmax'))
+
+    return model
 
 def normalize_image(image, img_width, img_height):
     # image = image / 255.

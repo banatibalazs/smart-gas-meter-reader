@@ -6,7 +6,7 @@ import math
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 import tensorflow as tf
 
-MODEL_PATH = '../train/models/_020-0.023_.h5'
+MODEL_PATH = '../train/models/model.h5'
 DATA_PATH = '../train/datasets/'
 PREDICT_ON_TEST = False
 
