@@ -6,9 +6,9 @@ import numpy as np
 from tflite_support.task import vision
 import traceback
 import os
+
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 import tensorflow as tf
-
 
 
 def plot_csv_metrics(path):
@@ -33,6 +33,159 @@ def plot_csv_metrics(path):
     plt.title('Loss')
     plt.xlabel('Epochs')
     plt.legend()
+
+
+def get_augmented_ds(data_dir="./eval_data/", train_test_ratio=0.01, seed=125, img_h=28, img_w=28,
+                     colormode='grayscale', batch_size=128, rotation=0.15):
+    train_ds = tf.keras.utils.image_dataset_from_directory(
+        data_dir,
+        validation_split=train_test_ratio,
+        subset="training",
+        seed=seed,
+        image_size=(img_h, img_w),
+        batch_size=None,
+        color_mode=colormode)
+
+    val_ds = tf.keras.utils.image_dataset_from_directory(
+        data_dir,
+        validation_split=train_test_ratio,
+        subset="validation",
+        seed=seed,
+        image_size=(img_h, img_w),
+        batch_size=None,
+        color_mode=colormode)
+
+    train_x, train_y = zip(*[(a.numpy(), b.numpy()) for a, b in iter(train_ds)])
+    test_x, test_y = zip(*[(a.numpy(), b.numpy()) for a, b in iter(val_ds)])
+
+    train_x = np.array(np.squeeze(train_x) / 255., np.float32)
+    test_x = np.array(np.squeeze(test_x) / 255., np.float32)
+
+    train_x = train_x.reshape((train_x.shape[0], train_x.shape[1], train_x.shape[2], 1))
+    test_x = test_x.reshape((test_x.shape[0], test_x.shape[1], test_x.shape[2], 1))
+
+    train_y = np.array(train_y, np.int64)
+    test_y = np.array(test_y, np.int64)
+
+    data_augmentation = tf.keras.Sequential([
+        tf.keras.layers.RandomRotation(rotation)
+        # tf.keras.layers.RandomContrast(0.5)
+    ])
+
+    train_ds = tf.data.Dataset.from_tensor_slices((train_x, train_y))
+    test_ds = tf.data.Dataset.from_tensor_slices((test_x, test_y))
+
+    train_ds = train_ds.shuffle(len(train_ds), reshuffle_each_iteration=True)
+    test_ds = test_ds.shuffle(len(test_ds), reshuffle_each_iteration=True)
+
+    # Batch all datasets.
+    train_ds = train_ds.batch(batch_size)
+    test_ds = test_ds.batch(batch_size)
+
+    train_ds = train_ds.map(lambda x, y: (data_augmentation(x, training=True), y),
+                            num_parallel_calls=tf.data.AUTOTUNE)
+
+    test_ds = test_ds.map(lambda x, y: (data_augmentation(x, training=True), y),
+                          num_parallel_calls=tf.data.AUTOTUNE)
+
+    augmented_train_ds = train_ds.cache().prefetch(buffer_size=tf.data.AUTOTUNE)
+    augmented_test_ds = test_ds.cache().prefetch(buffer_size=tf.data.AUTOTUNE)
+
+    # train_ds = tf.data.Dataset.from_tensor_slices((train_x, train_y))
+    # test_ds = tf.data.Dataset.from_tensor_slices((test_x, test_y))
+
+    return augmented_train_ds, augmented_test_ds
+
+
+class Balancer:
+
+    def __init__(self,
+                 threshold_1=50,
+                 threshold_2=200,
+                 aperture_size=3,
+                 hough_rho=1,
+                 hough_theta=(np.pi / 180),
+                 hough_threshold=110,
+                 hough_min_theta=0,
+                 hough_max_theta=0,
+                 max_angle=15):
+
+        self.lined_image = None
+        self.filtered_lines = None
+        self.max_angle = max_angle
+
+        self.canny_threshold_1 = threshold_1
+        self.canny_threshold_2 = threshold_2
+        self.canny_aperture_size = aperture_size
+        # cv2.Canny(greyscale_image, threshold_1, threshold_2, None, aperture_size)
+
+        self.hough_rho = hough_rho
+        self.hough_theta = hough_theta
+        self.hough_threshold = hough_threshold
+        self.hough_min_theta = hough_min_theta
+        self.hough_max_theta = hough_max_theta
+        # cv2.HoughLines(dst, hough_rho, hough_theta, hough_threshold, None, hough_min_theta, hough_max_theta)
+
+    def balance_image(self, image, balancing_cycles=3):
+
+        greyscale_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        for _ in range(balancing_cycles):
+            dst = cv2.Canny(greyscale_image,
+                            self.canny_threshold_1,
+                            self.canny_threshold_2,
+                            None,
+                            self.canny_aperture_size)
+            cdst = cv2.cvtColor(dst, cv2.COLOR_GRAY2BGR)
+
+            lines = cv2.HoughLines(dst,
+                                   self.hough_rho,
+                                   self.hough_theta,
+                                   self.hough_threshold,
+                                   None,
+                                   self.hough_min_theta,
+                                   self.hough_max_theta)
+            sizemax = math.sqrt(cdst.shape[0] ** 2 + cdst.shape[1] ** 2)
+
+            # Draw the lines
+            if lines is not None:
+                average_angle = 0
+                line_num = 0
+                filtered_lines = []
+                for i in range(0, len(lines)):
+                    rho = lines[i][0][0]
+                    theta = lines[i][0][1]
+
+                    cur_angle = theta * 180 / math.pi
+                    # print("Theta value: " + str(cur_angle))
+                    if abs((90 - cur_angle)) < self.max_angle:
+                        average_angle += cur_angle
+                        line_num += 1
+                        # print(str(cur_angle))
+
+                        a = math.cos(theta)
+                        b = math.sin(theta)
+                        x0 = a * rho
+                        y0 = b * rho
+                        # Computing line endpoints outside of image matrix
+                        pt1 = (int(x0 + sizemax * (-b)), int(y0 + sizemax * a))
+                        pt2 = (int(x0 - sizemax * (-b)), int(y0 - sizemax * a))
+                        cv2.line(cdst, pt1, pt2, (255, 0, 0), 3, cv2.LINE_AA)
+                        filtered_lines.append(lines[i])
+
+                self.filtered_lines = filtered_lines
+                self.lined_image = cdst
+                rows, cols = greyscale_image.shape[:2]
+                M = cv2.getRotationMatrix2D((cols / 2, rows / 2), ((average_angle / line_num) - 90), 1)
+                greyscale_image = cv2.warpAffine(greyscale_image, M, (cols, rows))
+                image = cv2.warpAffine(image, M, (cols, rows))
+
+        return image
+
+    def get_lined_image(self):
+        return self.lined_image
+
+    def get_lines(self):
+        return self.filtered_lines
 
 
 def balancing_tilted_image(image, greyscale_image, balancing_cycles):
@@ -131,7 +284,7 @@ def adaptive_threshold_and_median_blur(image, blockSize, k):
     return res_grey
 
 
-def find_contours(threshold_im, original_im, img_width, img_height, h_min=50, w_min=25, w_max=120, x_min=25, x_max=400, h_w_ratio_max=3, h_w_ratio_min=1):
+def find_contours(threshold_im, original_im, img_width, img_height, h_min=50, w_min=25, w_max=120, x_min=25, x_max=400, h_w_ratio_max=3, h_w_ratio_min=1, y_min=25, y_max=125):
     # contours, hierarchy = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
     # contours, hierarchy = cv2.findContours(thresh, cv2.RETR_LIST, cv2.CHAIN_APPROX_NONE)
     # contours, hierarchy = cv2.findContours(thresh, cv2.RETR_CCOMP, cv2.CHAIN_APPROX_NONE)
@@ -140,13 +293,21 @@ def find_contours(threshold_im, original_im, img_width, img_height, h_min=50, w_
     contours, hierarchy = cv2.findContours(threshold_im, cv2.RETR_TREE, cv2.CHAIN_APPROX_TC89_L1)
 
     try:
+        # h_min = 50
+        # w_min = 25
+        # w_max = 120
+        # x_min = 25
+        # x_max = 400
+        # h_w_ratio_max = 3
+        # h_w_ratio_min = 1
+
         threshold_im = cv2.cvtColor(threshold_im, cv2.COLOR_GRAY2BGR)
 
         filtered_contours = []
         for cntrIdx in range(0, len(contours)):
             x, y, w, h = cv2.boundingRect(contours[cntrIdx])
 
-            if h < h_min or w < w_min or w > w_max or x < x_min or x > x_max or h / w > h_w_ratio_max or h / w < h_w_ratio_min:
+            if h < h_min or w < w_min or w > w_max or x < x_min or x > x_max or h / w > h_w_ratio_max or h / w < h_w_ratio_min or y < y_min or (y+h) > y_max:
                 continue
 
             # if h < 80:
@@ -189,6 +350,7 @@ def find_contours(threshold_im, original_im, img_width, img_height, h_min=50, w_
         raise Exception(tb)
 
     return image_list, threshold_im
+
 
 # resize_and_rescale = tf.keras.Sequential([
 #     # tf.keras.layers.Resizing(IMG_WIDTH, IMG_HEIGHT),
@@ -247,6 +409,7 @@ def create_model():
     model.add(tf.keras.layers.Dense(10, activation='softmax'))
 
     return model
+
 
 def normalize_image(image, img_width, img_height):
     # image = image / 255.

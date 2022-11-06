@@ -21,6 +21,7 @@ model.compile(optimizer=optimizer,
               loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=False),
               metrics=['accuracy'])
 
+
 # Evaluate model on train and test
 # model.evaluate(train_x, train_y)
 model.evaluate(test_x, test_y)
