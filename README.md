@@ -1,5 +1,5 @@
 # smart-gas-meter-reader
-This project applies esp-cam to take photos of an analog gas meter.  The photos are analyzed by a .tflite object detector,  which detects the numberplate, then a simple CNN  model classifies the number.
+This project applies an esp-cam to take photos of an analog gas meter. The camera sends the photos to a linux server via mqtt protocol. On the server, a .tflite object detector detects the numberplate's position on the image (bounding box), which will be cut out. The locations of the numbers are detected by an opencv script. The individual numbers are the input of a simple CNN model that classifies the numbers.
 
 ## Esp-Cam installation:
 
