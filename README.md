@@ -1,5 +1,5 @@
 # smart-gas-meter-reader
-This project applies an esp-cam to take photos of an analog gas meter. The camera sends the photos to a linux server via mqtt protocol. On the server, a .tflite object detector detects the numberplate's position on the image (bounding box), which will be cut out. The locations of the numbers are detected by an opencv script. The individual numbers are the input of a simple CNN model that classifies the numbers.
+This project applies an esp-cam to take photos of an analog gas meter. The camera and a linux server communicate via mqtt protocol. An mqtt broker and a client program runs on the server wich periodically sends a message to the camera to take a photo. On the server, a .tflite object detector detects the numberplate's position on the image (bounding box), which will be cut out. The locations of the numbers are detected by an opencv script. The individual numbers are the input of a simple CNN model that classifies the numbers.
 
 ## Esp-Cam installation:
 
