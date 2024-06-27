@@ -34,3 +34,10 @@ This project applies an esp-cam to take photos of an analog gas meter. The camer
 
 
 ## Results
+
+# smart-gas-meter-reader
+
+![Python](https://img.shields.io/badge/Python-3.8-blue)
+![TensorFlow](https://img.shields.io/badge/TensorFlow-2.4-orange)
+![OpenCV](https://img.shields.io/badge/OpenCV-4.5-green)
+![Paho MQTT](https://img.shields.io/badge/Paho%20MQTT-1.5.1-red)
