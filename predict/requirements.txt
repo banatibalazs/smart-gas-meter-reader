@@ -1,0 +1,11 @@
+opencv-python
+numpy
+tensorflow
+scikit-learn
+pandas
+matplotlib
+glob2
+datetime
+tflite-support
+tqdm
+paho-mqtt
