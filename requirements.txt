@@ -2,3 +2,4 @@ pillow
 opencv-contrib-python
 paho-mqtt
 tflite-support-nightly
+tensorflow
