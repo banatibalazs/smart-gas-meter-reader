@@ -1,4 +1,4 @@
-from helper_functions import *
+from mqtt_server_and_analyzer.helper_functions import *
 import numpy as np
 import tensorflow as tf
 from sklearn.metrics import confusion_matrix
@@ -11,7 +11,7 @@ import glob
 import datetime
 from tflite_support.task import core
 from tflite_support.task import processor
-from helper_functions import *
+from mqtt_server_and_analyzer.helper_functions import *
 import cv2
 from tqdm import tqdm
 

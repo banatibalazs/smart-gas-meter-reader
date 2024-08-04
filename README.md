@@ -1,5 +1,17 @@
 # Smart Gas Meter Reader
 
+# Possible name alternatives:
+- Intelligent Gas Meter Monitor
+- Automated Gas Meter Reader
+- Smart Gas Consumption Tracker
+- Digital Gas Meter Analyzer
+- Gas Meter Vision System
+- AI-Powered Gas Meter Reader
+- Gas Usage Monitoring System
+- Smart Metering Solution
+- Gas Meter Image Processor
+- Advanced Gas Meter Reader
+
 This project utilizes an ESP-CAM to capture images of an analog gas meter. The camera communicates with a Linux server via the MQTT protocol. An MQTT broker and a client program run on the server, periodically instructing the camera to take a photo. On the server, a TensorFlow Lite object detector identifies the number plate's position in the image (bounding box), which is then cropped. The locations of the numbers are detected using an OpenCV script. The individual numbers are then classified by a simple CNN model.
 
 ## Programming the ESP32-CAM

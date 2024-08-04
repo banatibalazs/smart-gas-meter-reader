@@ -2,7 +2,7 @@ import glob
 import datetime
 from tflite_support.task import core
 from tflite_support.task import processor
-from helper_functions import *
+from mqtt_server_and_analyzer.helper_functions import *
 import cv2
 from tqdm import tqdm
 

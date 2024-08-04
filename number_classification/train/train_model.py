@@ -1,6 +1,6 @@
 import numpy as np
 import tensorflow as tf
-from helper_functions import create_model
+from mqtt_server_and_analyzer.helper_functions import create_model
 
 MODEL_PATH = "models/"
 DATA_PATH = './datasets/without_mnist/'

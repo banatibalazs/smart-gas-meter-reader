@@ -45,7 +45,7 @@ def create_model():
 
 
 model = '/home/balazs/Asztal/object_detection/gas_number.tflite'
-TF_MODEL_PATH = 'number_classification/classifier_model/'
+TF_MODEL_PATH = '../number_classification/classifier_model/'
 tf_model = create_model()
 tf_model.load_weights(TF_MODEL_PATH)
 
