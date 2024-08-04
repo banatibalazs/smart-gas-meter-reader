@@ -2,7 +2,7 @@ import numpy as np
 import tensorflow as tf
 from helper_functions import create_model
 
-MODEL_PATH = "./models/"
+MODEL_PATH = "models/"
 DATA_PATH = './datasets/without_mnist/'
 BATCH_SIZE = 128
 EPOCHS = 20
