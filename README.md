@@ -12,24 +12,24 @@ This project utilizes an ESP-CAM to capture images of an analog gas meter. The c
 1. ### Balancing
     If the image is tilted, the object detector marks a larger area. Therefore, it is important to balance the images.
     For this task, the Hough Lines algorithm is used.
-    ![img.png](img.png)
+    ![img.png](demo_images/gas_meter_whole.png)
 2. ### Number plate detection
     The object detector is a TensorFlow Lite model trained in Colab.
     Model architecture is EfficientNetV4.
     https://colab.research.google.com/github/khanhlvg/tflite_raspberry_pi/blob/main/object_detection/Train_custom_model_tutorial.ipynb
-    ![img_1.png](img_1.png)
+    ![img_1.png](demo_images/numbers_raw.png)
 3. ### Sharpening and resizing
     The detected images are resized to 140x1000 pixels.
-    ![img_2.png](img_2.png)
+    ![img_2.png](demo_images/numbers_sharpened.png)
 4. ### Applying Adaptive threshold algorithm
 5. ### Contour searching on threshold image
     The goal is to find the coordinates of the individual numbers on the number plate.
     Based on the found contours' coordinates, the 140x1000 px images are cut into 8 pieces.
-    ![img_3.png](img_3.png)
+    ![img_3.png](demo_images/numbers_contours.png)
 6. ### Classify the image pieces
-   ![img_4.png](img_4.png)
-   ![img_5.png](img_5.png)
-   ![img_6.png](img_6.png)
+   ![img_4.png](demo_images/number_1.png)
+   ![img_5.png](demo_images/number_3.png)
+   ![img_6.png](demo_images/number_6.png)
    A simple ad hoc TensorFlow CNN classifies the images into 10 classes. Due to the similarity of the problem, the dataset for model training was combined with the MNIST dataset.
 
 ## Results
