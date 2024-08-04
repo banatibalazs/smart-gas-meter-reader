@@ -45,7 +45,7 @@ def create_model():
 
 
 model = '/home/balazs/Asztal/object_detection/gas_number.tflite'
-TF_MODEL_PATH = 'tf_model/'
+TF_MODEL_PATH = 'number_classification/classifier_model/'
 tf_model = create_model()
 tf_model.load_weights(TF_MODEL_PATH)
 
@@ -54,7 +54,7 @@ tf_model.compile(optimizer=optimizer,
                   loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=False),
                   metrics=['accuracy'])
 
-# print(tf_model.layers[0].input_shape[1])
+# print(classifier_model.layers[0].input_shape[1])
 
 
 num_threads = 10

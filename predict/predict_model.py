@@ -16,7 +16,7 @@ import cv2
 from tqdm import tqdm
 
 # Model paths
-OBJECT_DETECTOR_PATH = './object_detector.tflite'
+OBJECT_DETECTOR_PATH = '../object_detection/object_detector.tflite'
 CLASSIFICATION_MODEL_PATH = '../train/models/_020-0.023_.h5'
 
 
