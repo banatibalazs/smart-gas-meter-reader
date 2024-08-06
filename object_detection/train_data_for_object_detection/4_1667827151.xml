@@ -1,0 +1,26 @@
+<annotation>
+	<folder>data</folder>
+	<filename>4_1667827151.jpg</filename>
+	<path>C:\Users\balaz\Desktop\github\others\data\4_1667827151.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>800</width>
+		<height>600</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>nums</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>248</xmin>
+			<ymin>432</ymin>
+			<xmax>631</xmax>
+			<ymax>491</ymax>
+		</bndbox>
+	</object>
+</annotation>
