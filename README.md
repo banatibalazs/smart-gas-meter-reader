@@ -1,5 +1,22 @@
 # Smart Gas Meter Reader
 
+## Table of Contents
+- [Introduction](#introduction)
+- [Labeling the Dataset for Object Detection](#labeling-the-dataset-for-object-detection)
+- [Programming the ESP32-CAM](#programming-the-esp32-cam)
+- [Training the Object Detector](#training-the-object-detector)
+- [Training the Image Classifier Model](#training-the-image-classifier-model)
+- [ESP-CAM Installation](#esp-cam-installation)
+- [Steps of Prediction](#steps-of-prediction)
+  - [Balancing](#balancing)
+  - [Dial-plate Detection](#dial-plate-detection)
+  - [Sharpening and Resizing](#sharpening-and-resizing)
+  - [Applying Adaptive Threshold Algorithm](#applying-adaptive-threshold-algorithm)
+  - [Contour Searching on Threshold Image](#contour-searching-on-threshold-image)
+  - [Classify the Image Pieces](#classify-the-image-pieces)
+- [Results](#results)
+
+
 
 <img src="./demo_images/schematic_drawing.png" width="600">
 
