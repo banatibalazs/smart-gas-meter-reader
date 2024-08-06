@@ -1,5 +1,10 @@
 # Smart Gas Meter Reader
 
+
+<img src="./demo_images/schematic_drawing.png" width="600">
+
+## Labeling the dataset for object detection
+
 # Possible name alternatives:
 - Intelligent Gas Meter Monitor
 - Automated Gas Meter Reader
@@ -11,6 +16,7 @@
 - Smart Metering Solution
 - Gas Meter Image Processor
 - Advanced Gas Meter Reader
+
 
 This project utilizes an ESP-CAM to capture images of an analog gas meter. The camera communicates with a Linux server via the MQTT protocol. An MQTT broker and a client program run on the server, periodically instructing the camera to take a photo. On the server, a TensorFlow Lite object detector identifies the number plate's position in the image (bounding box), which is then cropped. The locations of the numbers are detected using an OpenCV script. The individual numbers are then classified by a simple CNN model.
 
@@ -77,31 +83,56 @@ This project utilizes an ESP-CAM to capture images of an analog gas meter. The c
 ## Steps of prediction:
 
 1. ### Balancing
-    If the image is tilted, the object detector marks a larger area. Therefore, it is important to balance the images.
-    For this task, the Hough Lines algorithm is used.
-    ![img.png](demo_images/gas_meter_whole.png)
-2. ### Number plate detection
-    The object detector is a TensorFlow Lite model trained in Colab.
+
+    If the image is tilted, the object detector marks a bigger area. Therefor it is important to balance the images.
+    For this task, Hugh lines algorithm is used.
+
+<p align="center">
+  <img src="./demo_images/balanced_tilted_image.png" width="300">
+</p>
+
+2. ### Dial-plate detection
+    The object detector is a tensorflow lite model trained in colab.
     Model architecture is EfficientNetV4.
     https://colab.research.google.com/github/khanhlvg/tflite_raspberry_pi/blob/main/object_detection/Train_custom_model_tutorial.ipynb
-    ![img_1.png](demo_images/numbers_raw.png)
-3. ### Sharpening and resizing
+
+<p align="center">
+    <img src="./demo_images/cropped_raw_dial_plate.png" width="300">
+</p>
+
+3. ### Sharpening and resizing 
     The detected images are resized to 140x1000 pixels.
-    ![img_2.png](demo_images/numbers_sharpened.png)
-4. ### Applying Adaptive threshold algorithm
+
+<p align="center">
+    <img src="./demo_images/sharpened_resized_dial_plate.png" width="300">
+</p>
+
+4. ### Applying Adaptive threshold algorithm 
 5. ### Contour searching on threshold image
-    The goal is to find the coordinates of the individual numbers on the number plate.
-    Based on the found contours' coordinates, the 140x1000 px images are cut into 8 pieces.
-    ![img_3.png](demo_images/numbers_contours.png)
+    The aim is to find the coordinates of the individual numbers on the numberplate.
+    On the basis of the found contours' coordinates, the 140x1000 px images are cut into 8 pieces
+
+<p align="center">
+    <img src="./demo_images/contour_dial_plate.png" width="300">
+</p>
+
 6. ### Classify the image pieces
-   ![img_4.png](demo_images/number_1.png)
-   ![img_5.png](demo_images/number_3.png)
-   ![img_6.png](demo_images/number_6.png)
-   A simple ad hoc TensorFlow CNN classifies the images into 10 classes. Due to the similarity of the problem, the dataset for model training was combined with the MNIST dataset.
+
+<p align="center">
+    <img src="./demo_images/number_1.png" width="90">
+    <img src="./demo_images/number_3.png" width="90">
+    <img src="./demo_images/number_6.png" width="90">
+</p>
+
+   A simple ad hoc tensorflow CNN classifies the images into 10 classes. Because of the similarity of the problem, for the model training the dataset was combined with MNIST dataet.
+
 
 ## Results
 
+# smart-gas-meter-reader
 
-## ESP32-CAM and MQTT Server Communication
+![Python](https://img.shields.io/badge/Python-3.8-blue)
+![TensorFlow](https://img.shields.io/badge/TensorFlow-2.4-orange)
+![OpenCV](https://img.shields.io/badge/OpenCV-4.5-green)
+![Paho MQTT](https://img.shields.io/badge/Paho%20MQTT-1.5.1-red)
 
-The ESP32-CAM communicates with the MQTT server to send and receive messages. The MQTT broker, such as Mosquitto, runs on a Linux server. The ESP32-CAM connects to the broker over WiFi using the MQTT protocol. It subscribes to a specific topic (e.g., `esp32/cam`) to receive commands. When a message is published to this topic, the ESP32-CAM processes the command, such as taking a photo, and can publish the result back to another topic for the server to process. This setup allows for efficient and real-time communication between the ESP32-CAM and the server.
