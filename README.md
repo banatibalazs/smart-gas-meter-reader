@@ -143,7 +143,7 @@ This project utilizes an ESP-CAM to capture images of an analog gas meter. The c
 
    A simple ad hoc tensorflow CNN classifies the images into 10 classes. Because of the similarity of the problem, for the model training the dataset was combined with MNIST dataet.
 <p align="center">
-    <img src="./demo_images/pred_numbers.png" width="300">
+    <img src="./demo_images/pred_numbers.png" width="400">
 </p>
 
 ## Results
