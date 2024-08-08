@@ -8,7 +8,7 @@ pip install -r requirements.txt
 
 
 ## Table of Contents
-- [Introduction](#introduction)
+- [Overview](#Overview)
 - [Labeling the Dataset for Object Detection](#labeling-the-dataset-for-object-detection)
 - [Programming the ESP32-CAM](#programming-the-esp32-cam)
 - [Training the Object Detector](#training-the-object-detector)
@@ -24,11 +24,19 @@ pip install -r requirements.txt
 
 
 
-## Introduction
+## Overview
 <img src="./demo_images/schematic_drawing.png" width="600">
 
-This project utilizes an ESP-CAM to capture images of an analog gas meter. The camera communicates with a Linux server via the MQTT protocol. An MQTT broker and a client program run on the server, periodically instructing the camera to take a photo. On the server, a TensorFlow Lite object detector identifies the number plate's position in the image (bounding box), which is then cropped. The locations of the numbers are detected using an OpenCV script. The individual numbers are then classified by a simple CNN model.
-
+- The ESP-CAM captures images of an analog gas meter.
+- The camera communicates with a Linux server via MQTT.
+  - The server runs an MQTT broker and a client program.
+  - The server instructs the camera to take a photo.
+  - The camera sends the photo to the server.
+- The server processes the image
+  - OpenCV is used to preprocess the image.
+  - `TensorFlow Lite model` detects the dial plate's location.
+  - The dial plate is cut into 8 pieces.
+  - A `simple CNN model` classifies each piece.
 
 ## Labeling the training datasets
 
