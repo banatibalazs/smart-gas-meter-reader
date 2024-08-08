@@ -2,18 +2,10 @@
 
 Python 3.9.12
 
-
+```commandline
 pip install -r requirements.txt
-
-## Using conda environment:
-```
-conda env create -f conda_env/environment.yml
 ```
 
-### pip install wheels
-
-https://files.pythonhosted.org/packages/32/12/97fac25e11a3700e0fbb6dc87029bba359aaba0676761b1542d33d3132f1/tflite_support_nightly-0.4.4.dev20230716-cp39-cp39-manylinux2014_x86_64.whl
-https://files.pythonhosted.org/packages/bd/5f/a7e7b575db86015ca6155c60e535df75e4145e95eb97bb6abfb69362d38d/tensorflow_datasets-4.7.0-py3-none-any.whl
 
 ## Table of Contents
 - [Introduction](#introduction)
@@ -21,7 +13,6 @@ https://files.pythonhosted.org/packages/bd/5f/a7e7b575db86015ca6155c60e535df75e4
 - [Programming the ESP32-CAM](#programming-the-esp32-cam)
 - [Training the Object Detector](#training-the-object-detector)
 - [Training the Image Classifier Model](#training-the-image-classifier-model)
-- [ESP-CAM Installation](#esp-cam-installation)
 - [Steps of Prediction](#steps-of-prediction)
   - [Balancing](#balancing)
   - [Dial-plate Detection](#dial-plate-detection)
@@ -33,55 +24,39 @@ https://files.pythonhosted.org/packages/bd/5f/a7e7b575db86015ca6155c60e535df75e4
 
 
 
+## Introduction
 <img src="./demo_images/schematic_drawing.png" width="600">
-
-## Labeling the dataset for object detection
-
-# Possible name alternatives:
-- Intelligent Gas Meter Monitor
-- Automated Gas Meter Reader
-- Smart Gas Consumption Tracker
-- Digital Gas Meter Analyzer
-- Gas Meter Vision System
-- AI-Powered Gas Meter Reader
-- Gas Usage Monitoring System
-- Smart Metering Solution
-- Gas Meter Image Processor
-- Advanced Gas Meter Reader
-
 
 This project utilizes an ESP-CAM to capture images of an analog gas meter. The camera communicates with a Linux server via the MQTT protocol. An MQTT broker and a client program run on the server, periodically instructing the camera to take a photo. On the server, a TensorFlow Lite object detector identifies the number plate's position in the image (bounding box), which is then cropped. The locations of the numbers are detected using an OpenCV script. The individual numbers are then classified by a simple CNN model.
 
+
+## Labeling the training datasets
+
+1. Object Detection (Tensorflow Lite - EfficientDet)
+    - The dataset is labeled using the [labelImg](https://github.com/HumanSignal/labelImg) tool.
+   <p align="center">
+        <img src="./demo_images/obj_det_labeling.png" width="300">
+   </p>
+
+2. Image Classification (Tensorflow - CNN)
+    - The images (<img src="./demo_images/number_1.png" width="15"> <img src="./demo_images/number_3.png" width="15"> <img src="./demo_images/number_6.png" width="15">) have to be sorted into folders, where each folder represents a class. The dataset is combined with the MNIST dataset to increase the number of training samples.
+    - The folder structure:
+      ```commandline
+      ├── 0
+      │   ├── 0_1.jpg
+      │   ├── 0_2.jpg
+      │   ├── ...
+      ├── ...
+      ├── 9
+      │   ├── 9_1.jpg
+      │   ├── 9_2.jpg
+      │   ├── ...
+      ```
+
 ## Programming the ESP32-CAM
 
-1. **Install the Arduino IDE**: Download and install the Arduino IDE from the [official website](https://www.arduino.cc/en/software).
+ [Esp32-cam setup readme](./setup/setup_esp32_cam/README.md)
 
-2. **Add the ESP32 Board to Arduino IDE**:
-    - Open Arduino IDE.
-    - Go to `File` > `Preferences`.
-    - In the `Additional Board Manager URLs` field, add: `https://dl.espressif.com/dl/package_esp32_index.json`.
-    - Go to `Tools` > `Board` > `Boards Manager`.
-    - Search for `esp32` and install the `esp32` package.
-
-3. **Connect the ESP32-CAM**:
-    - Connect the ESP32-CAM to your computer using a USB-to-serial adapter.
-    - Select the correct board and port in Arduino IDE: `Tools` > `Board` > `ESP32 Wrover Module` and `Tools` > `Port`.
-
-4. **Upload the Code**:
-    - Open the ESP32-CAM sketch from `File` > `Examples` > `ESP32` > `Camera` > `CameraWebServer`.
-    - Modify the WiFi credentials in the sketch.
-    - Upload the sketch to the ESP32-CAM.
-
-5. **Test the Camera**:
-    - Open the Serial Monitor to get the IP address of the ESP32-CAM.
-    - Open a web browser and enter the IP address to see the camera feed.
-
-
-You need to install the PubSubClient library. Here are the steps to do so:  
-Open the Arduino IDE.
-Go to Sketch -> Include Library -> Manage Libraries....
-In the Library Manager, type PubSubClient in the search box.
-Find the PubSubClient library by Nick O'Leary and click the Install button.
 
 ## Training the Object Detector
 
