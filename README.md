@@ -1,5 +1,15 @@
 # Smart Gas Meter Reader
 
+Python 3.9.12
+
+
+pip install -r requirements.txt
+
+### pip install wheels
+
+https://files.pythonhosted.org/packages/32/12/97fac25e11a3700e0fbb6dc87029bba359aaba0676761b1542d33d3132f1/tflite_support_nightly-0.4.4.dev20230716-cp39-cp39-manylinux2014_x86_64.whl
+https://files.pythonhosted.org/packages/bd/5f/a7e7b575db86015ca6155c60e535df75e4145e95eb97bb6abfb69362d38d/tensorflow_datasets-4.7.0-py3-none-any.whl
+
 ## Table of Contents
 - [Introduction](#introduction)
 - [Labeling the Dataset for Object Detection](#labeling-the-dataset-for-object-detection)
