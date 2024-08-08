@@ -9,8 +9,8 @@ pip install -r requirements.txt
 
 ## Table of Contents
 - [Overview](#Overview)
-- [Creating training datasets for the models](#Creating-training-datasets-for-the-models)
 - [Programming the ESP32-CAM](#programming-the-esp32-cam)
+- [Creating training datasets for the models](#Creating-training-datasets-for-the-models)
 - [Training the Object Detector](#training-the-object-detector)
 - [Training the Image Classifier Model](#training-the-image-classifier-model)
 - [Steps of Prediction](#steps-of-prediction)
@@ -37,6 +37,10 @@ pip install -r requirements.txt
   - The dial plate is cut into 8 pieces.
   - A `simple CNN model` classifies each piece.
 
+
+## Programming the ESP32-CAM
+ [Esp32-cam setup readme](./setup/setup_esp32_cam/README.md)
+
 ## Creating training datasets for the models
 
 1. Object Detection (Tensorflow Lite - EfficientDet)
@@ -46,7 +50,7 @@ pip install -r requirements.txt
    </p>
 
 2. Image Classification (Tensorflow - CNN)
-    - The images (<img src="./demo_images/number_1.png" width="15"> <img src="./demo_images/number_3.png" width="15"> <img src="./demo_images/number_6.png" width="15">) have to be sorted into folders, where each folder represents a class. The dataset is combined with the MNIST dataset to increase the number of training samples.
+    - The images (<img src="./demo_images/number_1.png" width="15"> <img src="./demo_images/number_3.png" width="15"> <img src="./demo_images/number_6.png" width="15">) have to be sorted into folders, where each folder represents a class. The dataset may be combined with the MNIST dataset to increase the number of training samples.
     - The folder structure:
       ```commandline
       ├── 0
@@ -59,11 +63,6 @@ pip install -r requirements.txt
       │   ├── 9_2.jpg
       │   ├── ...
       ```
-
-## Programming the ESP32-CAM
-
- [Esp32-cam setup readme](./setup/setup_esp32_cam/README.md)
-
 
 ## Training the Object Detector
 
@@ -79,9 +78,9 @@ pip install -r requirements.txt
 
 ## Training the Image Classifier Model
 
-1**Train the Model**:
-    - Use the `train/create_datasets.py` script to load and preprocess the dataset.
-    - Train a simple CNN model using TensorFlow.
+- Use the `train/train_model.py` script to train the model.
+
+- or use the `train/train_model.ipynb` notebook to train the model.
 
 ## Steps of prediction:
 
