@@ -5,6 +5,11 @@ Python 3.9.12
 
 pip install -r requirements.txt
 
+## Using conda environment:
+```
+conda env create -f conda_env/environment.yml
+```
+
 ### pip install wheels
 
 https://files.pythonhosted.org/packages/32/12/97fac25e11a3700e0fbb6dc87029bba359aaba0676761b1542d33d3132f1/tflite_support_nightly-0.4.4.dev20230716-cp39-cp39-manylinux2014_x86_64.whl
