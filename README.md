@@ -9,7 +9,7 @@ pip install -r requirements.txt
 
 ## Table of Contents
 - [Overview](#Overview)
-- [Labeling the Dataset for Object Detection](#labeling-the-dataset-for-object-detection)
+- [Creating training datasets for the models](#Creating-training-datasets-for-the-models)
 - [Programming the ESP32-CAM](#programming-the-esp32-cam)
 - [Training the Object Detector](#training-the-object-detector)
 - [Training the Image Classifier Model](#training-the-image-classifier-model)
@@ -21,7 +21,6 @@ pip install -r requirements.txt
   - [Contour Searching on Threshold Image](#contour-searching-on-threshold-image)
   - [Classify the Image Pieces](#classify-the-image-pieces)
 - [Results](#results)
-
 
 
 ## Overview
@@ -38,7 +37,7 @@ pip install -r requirements.txt
   - The dial plate is cut into 8 pieces.
   - A `simple CNN model` classifies each piece.
 
-## Labeling the training datasets
+## Creating training datasets for the models
 
 1. Object Detection (Tensorflow Lite - EfficientDet)
     - The dataset is labeled using the [labelImg](https://github.com/HumanSignal/labelImg) tool.
@@ -72,35 +71,17 @@ pip install -r requirements.txt
     - Open the [Model Maker Object Detection for Android Figurine](https://colab.research.google.com/github/khanhlvg/tflite_raspberry_pi/blob/main/object_detection/Train_custom_model_tutorial.ipynb) notebook in Google Colab.
 
 2. **Prepare the Dataset**:
-    - Label the dataset using the [labelImg](https://github.com/HumanSignal/labelImg) tool.
     - Upload the labeled dataset to Google Colab.
 
 3. **Train the Model**:
     - Follow the steps in the Colab notebook to train the object detection model.
     - Download the trained TensorFlow Lite model.
 
-4. **Compile for EdgeTPU**:
-    - Use the EdgeTPU compiler to compile the model for EdgeTPU.
-    - Download the compiled model to your local computer.
-
 ## Training the Image Classifier Model
 
-1. **Prepare the Dataset**:
-    - Combine the local dataset with the MNIST dataset.
-    - Save the combined dataset.
-
-2. **Train the Model**:
+1**Train the Model**:
     - Use the `train/create_datasets.py` script to load and preprocess the dataset.
     - Train a simple CNN model using TensorFlow.
-
-3. **Save the Model**:
-    - Save the trained model in TensorFlow Lite format.
-
-4. **Deploy the Model**:
-    - Deploy the TensorFlow Lite model to the server for inference.
-
-
-## ESP-CAM installation:
 
 ## Steps of prediction:
 
@@ -146,29 +127,4 @@ pip install -r requirements.txt
 </p>
 
 ## Results
-
-# smart-gas-meter-reader
-
-![Python](https://img.shields.io/badge/Python-3.8-blue)
-![TensorFlow](https://img.shields.io/badge/TensorFlow-2.4-orange)
-![OpenCV](https://img.shields.io/badge/OpenCV-4.5-green)
-![Paho MQTT](https://img.shields.io/badge/Paho%20MQTT-1.5.1-red)
-
-
-# Set up mosquitto MQTT broker
-```
-sudo apt-get install mosquitto mosquitto-clients
-```
-
-# Set up static IP address
-```
-sudo nano /etc/dhcpcd.conf
-```
-Add the following lines to the end of the file
-```
-interface wlan0
-static ip_address=
-static routers=
-static domain_name_servers=
-```
 
