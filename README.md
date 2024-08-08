@@ -166,3 +166,21 @@ Find the PubSubClient library by Nick O'Leary and click the Install button.
 ![OpenCV](https://img.shields.io/badge/OpenCV-4.5-green)
 ![Paho MQTT](https://img.shields.io/badge/Paho%20MQTT-1.5.1-red)
 
+
+# Set up mosquitto MQTT broker
+```
+sudo apt-get install mosquitto mosquitto-clients
+```
+
+# Set up static IP address
+```
+sudo nano /etc/dhcpcd.conf
+```
+Add the following lines to the end of the file
+```
+interface wlan0
+static ip_address=
+static routers=
+static domain_name_servers=
+```
+
