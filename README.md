@@ -71,6 +71,13 @@ This project utilizes an ESP-CAM to capture images of an analog gas meter. The c
     - Open the Serial Monitor to get the IP address of the ESP32-CAM.
     - Open a web browser and enter the IP address to see the camera feed.
 
+
+You need to install the PubSubClient library. Here are the steps to do so:  
+Open the Arduino IDE.
+Go to Sketch -> Include Library -> Manage Libraries....
+In the Library Manager, type PubSubClient in the search box.
+Find the PubSubClient library by Nick O'Leary and click the Install button.
+
 ## Training the Object Detector
 
 1. **Set Up Google Colab**:
