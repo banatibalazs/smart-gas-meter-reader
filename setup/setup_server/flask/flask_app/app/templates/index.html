@@ -17,7 +17,7 @@
         <div class="col-sm-12 header">
             <nav class="navbar navbar-dark bg-dark justify-content-between">
                 <a class="navbar-brand gas_meter" href="/"><h1><i
-                        class="fa-solid fa-temperature-three-quarters gas-icon"></i> Gázóra</h1></a>
+                        class="fa-solid fa-temperature-three-quarters gas-icon"></i> Gas meter</h1></a>
 
                 <form action="/filter" method="POST" class="form-inline">
                     <input onchange="check_start_end_values()"
@@ -37,7 +37,7 @@
                            placeholder="Veg" aria-label="Search" required>
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit" value="submit"
                             style="color:white;border-color:white">
-                        <i class="fa-solid fa-magnifying-glass"></i> Keresés
+                        <i class="fa-solid fa-magnifying-glass"></i> Search
                     </button>
                 </form>
             </nav>
@@ -45,7 +45,7 @@
     </div>
     <div class="row">
         <div class="col-sm-12 subNavbar center">
-            <h2 style="display:inline-block"><i class="fa-solid fa-calendar-days"></i> Keresett időszak statisztikája
+            <h2 style="display:inline-block"><i class="fa-solid fa-calendar-days"></i> Statistics of the search period
             </h2>
             <button id="errorBtn" onclick="errorBtnClick()" class="btn"><i
                     class="fa-solid fa-triangle-exclamation"></i></button>
@@ -57,9 +57,9 @@
                 <thead>
                 <tr align="center">
                     <!--                    <th> Leírás</th>-->
-                    <th> Dátum</th>
-                    <th> Állás</th>
-                    <th> Kép</th>
+                    <th> Date</th>
+                    <th> Reading</th>
+                    <th> Image</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -80,13 +80,13 @@
                 {% set value_delta = (last_v - first_v) %}
                 <tr align="center">
                     <!--                    <td class="greyTd"></td>-->
-                    <th><b>Eltelt idő:</b></th>
-                    <th><b>Fogyasztás:</b></th>
-                    <th><b>Átlagfogyasztás:</b></th>
+                    <th><b>Elapsed Time</b></th>
+                    <th><b>Consumption:</b></th>
+                    <th><b>Average consumption:</b></th>
                 </tr>
                 <tr align="center">
                     <!--                    <td class="greyTd"></td>-->
-                    <td><b id="time_delta">{{ time_delta }}</b> nap</td>
+                    <td><b id="time_delta">{{ time_delta }}</b> day</td>
                     <td><b id="value_delta"> {{ value_delta }}</b> m<sup>3</sup></td>
                     <td><b id="average_value"> {{ (value_delta/time_delta)|round(2) }}</b> m<sup>3</sup>/nap</td>
                 </tr>
@@ -101,26 +101,26 @@
         <div class="col-sm-12">
             <table class="table table-hover table-bordered">
                 <th style="background-color:darkorange;" colspan="5">
-                     <h4><i class="fa-solid fa-triangle-exclamation"></i> Hibakezelés: <i><small>Válassza ki a hibás sort és adja meg a helyes értéket.</small></i></h4>
+                     <h4><i class="fa-solid fa-triangle-exclamation"></i> Error handling: <i><small>Choose the incorrect row and enter the correct value.</small></i></h4>
                 </th>
                 <tr align="center">
-                    <th>Sor kiválasztása:</th>
-                    <th>Kép</th>
-                    <th>Régi érték:</th>
-                    <th>Új érték:</th>
+                    <th>Choose row:</th>
+                    <th>Image</th>
+                    <th>Old value</th>
+                    <th>New value</th>
                     <th></th>
                 </tr>
                 <tr align="center">
                     <td>
                         <select onchange="errorSelect(this)" class="form-control" name="" id="">
-                            <option id="errorOption1" value="1">Kezdő</option>
-                            <option id="errorOption2" value="2">Záró</option>
+                            <option id="errorOption1" value="1">Start</option>
+                            <option id="errorOption2" value="2">End</option>
                         </select>
                     </td>
                     <td><img id="errorImg" style="filter: grayscale(100%)" src="" alt=""></td>
                     <td><b id="errorOldValue"></b></td>
                     <td><input style="text-align:right" class="form-control" step="1" min="10000" max="99999" id="errorInputNumber" type="number" required></td>
-                    <td><button class="btn btn-danger" onclick="changeImgValue()"> Módosítás</button></td>
+                    <td><button class="btn btn-danger" onclick="changeImgValue()"> Modify</button></td>
                 </tr>
             </table>
 
@@ -128,7 +128,7 @@
     </div>
     <div class="row">
         <div class="col-sm-12 titleHeader center">
-            <h2><i class="fa-solid fa-chart-pie"></i> Éves statisztika</h2>
+            <h2><i class="fa-solid fa-chart-pie"></i> Yearly statistics</h2>
         </div>
     </div>
     {% if last_d is not none %}
@@ -137,14 +137,11 @@
             {% if monthly_keys is defined %}
             <table class="table table-hover table-bordered">
                 <thead>
-                <!--                <tr align="center">-->
-                <!--                    <th colspan="4">Havi felbontás</th>-->
-                <!--                </tr>-->
                 <tr align="center" style="border-bottom:2px solid black; background-color:lightgrey;">
-                    <th><b>Év</b></th>
-                    <th><b>Hó</b></th>
-                    <th><b>Fogyasztás </b></th>
-                    <th><b>Kvóta [m<sup>3</sup>]</b></th>
+                    <th><b>Year</b></th>
+                    <th><b>Month</b></th>
+                    <th><b>Consumption </b></th>
+                    <th><b>Quota [m<sup>3</sup>]</b></th>
                 </tr>
                 </thead>
                 </tbody>
@@ -165,13 +162,13 @@
         </div>
     </div>
     {% endif %}
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="footer">
-                <button type="button" class="btn btn-success">---</button>
-            </div>
-        </div>
-    </div>
+<!--    <div class="row">-->
+<!--        <div class="col-sm-12">-->
+<!--            <div class="footer">-->
+<!--                <button type="button" class="btn btn-success">-&#45;&#45;</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
 
 
 </div>

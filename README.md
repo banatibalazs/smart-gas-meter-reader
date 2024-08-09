@@ -137,5 +137,9 @@ pip install -r requirements.txt
 
 ## Results in flask web app
 
+<p align="center">
+    <img src="./demo_images/flask.png" width="800">
+</p>
+
 ## Results
 
