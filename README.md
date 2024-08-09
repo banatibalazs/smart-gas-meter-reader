@@ -82,9 +82,7 @@ pip install -r requirements.txt
 
 ## Training the Image Classifier Model
 
-- Use the `train/train_model.py` script to train the model.
-
-- or use the `train/train_model.ipynb` notebook to train the model.
+Use the `train/number_classification/train_and_eval.ipynb` notebook to train the model.
 
 ## Steps of prediction:
 
