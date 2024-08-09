@@ -44,8 +44,8 @@ def create_model():
     return model
 
 
-model = '/home/balazs/Asztal/object_detection/gas_number.tflite'
-TF_MODEL_PATH = '../number_classification/classifier_model/'
+TF_LITE_MODEL_PATH = 'models/object_detector.tflite'
+TF_MODEL_PATH = 'models/classifier.h5'
 tf_model = create_model()
 tf_model.load_weights(TF_MODEL_PATH)
 
@@ -61,7 +61,7 @@ num_threads = 10
 enable_edgetpu = False
 
 base_options = core.BaseOptions(
-    file_name=model, use_coral=enable_edgetpu, num_threads=num_threads)
+    file_name=TFLITE_MODEL_PATH, use_coral=enable_edgetpu, num_threads=num_threads)
 detection_options = processor.DetectionOptions(
     max_results=3, score_threshold=0.1)
 options = vision.ObjectDetectorOptions(
