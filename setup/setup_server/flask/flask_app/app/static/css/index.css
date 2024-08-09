@@ -1,0 +1,214 @@
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+nav {
+    margin-top: 50px
+    margin-bottom: 30px;
+}
+
+.subNavbar {
+    margin-top: 120px;
+    text-align: center;
+    border: 1px solid black;
+    box-shadow: 2px 2px 4px grey;
+    max-width: 1200px;
+    background-color: lightgreen;
+}
+
+.titleHeader {
+    margin-top:25px;
+    text-align: center;
+    border: 1px solid black;
+    box-shadow: 2px 2px 4px grey;
+    max-width: 1200px;
+    background-color: lightgreen;
+}
+
+.subNavbar:hover, .titleHeader:hover  {
+        box-shadow: 2px 2px 5px black;
+        background-color: orange;
+}
+
+.header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  background-color: #343A40;
+  color: white;
+  text-align: center;
+  z-index: 2;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #343A40;
+  color: white;
+  text-align: center;
+}
+
+table {
+    max-width: 1200px;
+    margin:auto;
+    box-shadow: 1px 1px 5px black;
+}
+
+th {
+    top: -1px;
+    position:sticky;
+    z-index:1;
+    background-color: silver;
+}
+
+tr:hover, .subNavbar:hover  {
+        box-shadow: 2px 2px 5px black !important;
+}
+
+input:hover {
+    box-shadow: 2px 2px 5px black;
+    background-color: silver;
+    color: white;
+    text-shadow: 1px 1px 1px black;
+}
+
+img {
+   filter: grayscale(0%);
+   height: 50px;
+   width: 320px;
+}
+
+.fa-list, .chart-pie {
+    font-size: 30px;
+    display: inline-block;
+}
+
+.picked {
+    background-color: orange;
+}
+.picked:hover {
+    background-color: DarkOrange !important;
+}
+
+#errorBtn {
+    float:right;
+    display:inline-block;
+    color: black;
+}
+
+@media screen and (max-width: 1050px) and (min-height: 950px) {
+    body {
+        background-color: white;
+    }
+
+    .upper {
+        display:none;
+    }
+
+    form {
+        display:block !important;
+        width: 100% !important;
+    }
+    select, button {
+        font-size: 25px !important;
+        width: 80% !important;
+        margin-left: 0!important;
+        margin-right: 10px !important;
+        margin-bottom: 10px !important;
+        text-align: center;
+    }
+
+
+    input {
+        font-size: 25px !important;
+        width: 80% !important;
+        margin-left: 0!important;
+        margin-right: 0!important;
+        margin-bottom: 10px !important;
+        text-align: center;
+    }
+
+    .subNavbar {
+        margin-top: 40px;
+    }
+
+    .header {
+        position: relative;
+    }
+    .footer {
+        display: none;
+    }
+
+    img {
+        height: 60px;
+        width: 400px;
+        filter: grayscale(0%);
+    }
+
+    img:hover {
+        height: 60px;
+        width: 400px;
+        filter: grayscale(0%);
+    }
+
+    table {
+        max-width: 100%;
+        margin:auto;
+    }
+
+    th {
+        background-color: silver;
+        color: white;
+    }
+
+    td, th  {
+        font-size: 25px;
+        color: black;
+    }
+
+    tr:hover {
+        box-shadow: 2px 2px 5px grey;
+        background-color: silver;
+        z-index: 1;
+    }
+
+    .gas_meter {
+        margin: 0;
+        font-size: 50px;
+        color: black;
+        display:block;
+        width: 100%;
+    }
+    .gas-icon {
+        font-size: 40px;
+    }
+
+    #errorBtn {
+        display: none;
+    }
+
+}
+@media (max-height: 950px) {
+    .footer {
+        display: none;
+    }
+
+    th, .header {
+        position: static;
+    }
+    .filename, .year, .month, .day {
+        display: none;
+    }
+    .subNavbar {
+        margin-top: 10px;
+    }
+
+
+
+}
+
