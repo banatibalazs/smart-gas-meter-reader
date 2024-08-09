@@ -103,7 +103,7 @@ pip install -r requirements.txt
     https://colab.research.google.com/github/khanhlvg/tflite_raspberry_pi/blob/main/object_detection/Train_custom_model_tutorial.ipynb
 
 <p align="center">
-    <img src="./demo_images/cropped_raw_dial_plate.png" width="300">
+    <img src="./demo_images/detected.png" width="300">
 </p>
 
 3. ### Sharpening and resizing 
@@ -116,7 +116,7 @@ pip install -r requirements.txt
 4. ### Applying Adaptive threshold algorithm 
 
 <p align="center">
-    <img src="./demo_images/threshold_image.png" width="300">
+    <img src="./demo_images/threshold.png" width="300">
 </p>
 
 5. ### Contour searching on threshold image
@@ -124,7 +124,7 @@ pip install -r requirements.txt
     On the basis of the found contours' coordinates, the 140x1000 px images are cut into 8 pieces
 
 <p align="center">
-    <img src="./demo_images/contour_dial_plate.png" width="300">
+    <img src="./demo_images/contour.png" width="300">
 </p>
 
 6. ### Classify the image pieces
