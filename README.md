@@ -95,7 +95,7 @@ pip install -r requirements.txt
 
 2. ### Dial-plate detection
     The object detector is a tensorflow lite model trained in colab.
-    Model architecture is EfficientNetV4.
+    Model architecture is EfficientDetV4.
     https://colab.research.google.com/github/khanhlvg/tflite_raspberry_pi/blob/main/object_detection/Train_custom_model_tutorial.ipynb
 
 <p align="center">
@@ -120,7 +120,7 @@ pip install -r requirements.txt
 
 6. ### Classify the image pieces
 
-   A simple ad hoc tensorflow CNN classifies the images into 10 classes. Because of the similarity of the problem, for the model training the dataset was combined with MNIST dataet.
+   A tensorflow CNN model classifies the images into 10 classes.
 <p align="center">
     <img src="./demo_images/pred_numbers.png" width="600">
 </p>

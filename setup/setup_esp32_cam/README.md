@@ -4,21 +4,26 @@
 
 2. **Add the ESP32 Board to Arduino IDE**:
     - Open Arduino IDE.
-    - Go to `File` > `Preferences`.
-    - In the `Additional Board Manager URLs` field, add: `https://dl.espressif.com/dl/package_esp32_index.json`.
     - Go to `Tools` > `Board` > `Boards Manager`.
+    - Install the `esp32 by Espressif Systems`.
     - Search for `esp32` and install the `esp32` package.
+    - <p align="left"> <img src="esp32_espressif.png" width="200"> </p>
 
-3. **Connect the ESP32-CAM**:
+3. **Add `PubSubClient by Nock O'Leary` **:
+    - Go to `Tools` > `Manage Libraries...`.
+    - Search for `PubSubClient` and install the library.
+    - <p align="left"> <img src="pubsubclient.png" width="200"> </p>
+
+4. **Connect the ESP32-CAM**:
     - Connect the ESP32-CAM to your computer using a USB-to-serial adapter.
-    - Select the correct board and port in Arduino IDE: `Tools` > `Board` > `ESP32 Wrover Module` and `Tools` > `Port`.
+    - <p align="left"> <img src="esp32_cam_to_ftdi_programmer_wiring.png" width="200"> </p>
+    - Select the correct board and port in Arduino IDE: `Tools` > `Board` > `AI Thinker ESP32-CAM` and `Tools` > `Port`.
 
-4. **Upload the Code**:
-    - Open the ESP32-CAM sketch from `File` > `Examples` > `ESP32` > `Camera` > `CameraWebServer`.
-    - Modify the WiFi credentials in the sketch.
+5. **Upload the Code**:
+    - In `esp32_cam_mqtt.ino` sketch file, update the `WIFI_SSID`, `WIFI_PASSWORD`, `MQTT_BROKER`, `MQTT_PORT`, `MQTT_USERNAME`, and `MQTT_PASSWORD` with your Wi-Fi and MQTT broker details. 
     - Upload the sketch to the ESP32-CAM.
 
-5. **Test the Camera**:
+6. **Test the Camera**:
     - Open the Serial Monitor to get the IP address of the ESP32-CAM.
     - Open a web browser and enter the IP address to see the camera feed.
 
