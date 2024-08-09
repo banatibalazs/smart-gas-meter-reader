@@ -114,6 +114,11 @@ pip install -r requirements.txt
 </p>
 
 4. ### Applying Adaptive threshold algorithm 
+
+<p align="center">
+    <img src="./demo_images/threshold_image.png" width="300">
+</p>
+
 5. ### Contour searching on threshold image
     The aim is to find the coordinates of the individual numbers on the numberplate.
     On the basis of the found contours' coordinates, the 140x1000 px images are cut into 8 pieces
