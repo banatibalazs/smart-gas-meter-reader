@@ -23,13 +23,4 @@
     - In `esp32_cam_mqtt.ino` sketch file, update the `WIFI_SSID`, `WIFI_PASSWORD`, `MQTT_BROKER`, `MQTT_PORT`, `MQTT_USERNAME`, and `MQTT_PASSWORD` with your Wi-Fi and MQTT broker details. 
     - Upload the sketch to the ESP32-CAM.
 
-6. **Test the Camera**:
-    - Open the Serial Monitor to get the IP address of the ESP32-CAM.
-    - Open a web browser and enter the IP address to see the camera feed.
-
-
-You need to install the PubSubClient library. Here are the steps to do so:  
-Open the Arduino IDE.
-Go to Sketch -> Include Library -> Manage Libraries....
-In the Library Manager, type PubSubClient in the search box.
-Find the PubSubClient library by Nick O'Leary and click the Install button.
+   
