@@ -3,7 +3,8 @@
   - [Install the `mosquitto` packages:](#Install-the-mosquitto-packages)
   - [To secure the MQTT broker, create a password file:](#To-secure-the-MQTT-broker-create-a-password-file)
   - [Accessing the MQTT broker over LAN](#Accessing-the-MQTT-broker-over-LAN)
-
+- [Creating executable scripts with PyInstaller](#Creating-executable-scripts-with-PyInstaller)
+- [Set up cron job to execute the script regularly](#Set-up-cron-job-to-execute-the-script-regularly)
 
 
 
