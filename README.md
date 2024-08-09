@@ -131,7 +131,7 @@ pip install -r requirements.txt
 
    A tensorflow CNN model classifies the images into 10 classes.
 <p align="center">
-    <img src="./demo_images/pred_numbers.png" width="600">
+    <img src="./demo_images/pred_numbers.png" width="800">
 </p>
 
 ## Results
