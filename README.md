@@ -94,7 +94,7 @@ pip install -r requirements.txt
     For this task, Hugh lines algorithm is used.
 
 <p align="center">
-  <img src="./demo_images/balanced_tilted_image.png" width="300">
+  <img src="./demo_images/balanced.png" width="300">
 </p>
 
 2. ### Dial-plate detection
