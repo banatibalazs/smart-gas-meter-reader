@@ -110,7 +110,7 @@ pip install -r requirements.txt
     The detected images are resized to 140x1000 pixels.
 
 <p align="center">
-    <img src="./demo_images/sharpened_resized_dial_plate.png" width="300">
+    <img src="./demo_images/sharpened.png" width="300">
 </p>
 
 4. ### Applying Adaptive threshold algorithm 
