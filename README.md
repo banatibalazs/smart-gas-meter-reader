@@ -10,6 +10,7 @@ pip install -r requirements.txt
 ## Table of Contents
 - [Overview](#Overview)
 - [Programming the ESP32-CAM](#programming-the-esp32-cam)
+- [Setting up the MQTT Broker](#setting-up-the-mqtt-broker)
 - [Creating training datasets for the models](#Creating-training-datasets-for-the-models)
 - [Training the Object Detector](#training-the-object-detector)
 - [Training the Image Classifier Model](#training-the-image-classifier-model)
@@ -40,6 +41,9 @@ pip install -r requirements.txt
 
 ## Programming the ESP32-CAM
  [Esp32-cam setup readme](./setup/setup_esp32_cam/README.md)
+
+## Setting up the MQTT Broker
+ [Mosquitto setup readme](./setup/setup_mqtt/README.md)
 
 ## Creating training datasets for the models
 
