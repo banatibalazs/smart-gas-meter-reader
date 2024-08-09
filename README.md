@@ -141,5 +141,4 @@ pip install -r requirements.txt
     <img src="./demo_images/flask.png" width="800">
 </p>
 
-## Results
 
