@@ -3,6 +3,7 @@
   - [Install the `mosquitto` packages:](#Install-the-mosquitto-packages)
   - [To secure the MQTT broker, create a password file:](#To-secure-the-MQTT-broker-create-a-password-file)
   - [Accessing the MQTT broker over LAN](#Accessing-the-MQTT-broker-over-LAN)
+- [Configure flask app](#Configure-flask-app)
 - [Creating executable scripts with PyInstaller](#Creating-executable-scripts-with-PyInstaller)
 - [Set up cron job to execute the script regularly](#Set-up-cron-job-to-execute-the-script-regularly)
 
@@ -104,9 +105,14 @@ sudo ufw reload
 
 The MQTT broker is now accessible over LAN.
 
+## Configure flask app
+
 ## Creating executable scripts with PyInstaller
 
-## Set up cron job to execute the script regularly
+## Set up cron job
+
+- Run the script regularly.
+- Copy the processed images into flask's static/images folder.
 
 I used https://crontab.guru/ to find the proper schedule expression.
 
