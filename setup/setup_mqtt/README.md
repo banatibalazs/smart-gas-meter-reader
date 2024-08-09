@@ -1,6 +1,15 @@
-# Configuration of the MQTT broker
+# Table of Contents:
+- [Configuration of the MQTT broker](#Configuration-of-the-MQTT-broker)
+  - [Install the `mosquitto` packages:](#Install-the-mosquitto-packages)
+  - [To secure the MQTT broker, create a password file:](#To-secure-the-MQTT-broker-create-a-password-file)
+  - [Accessing the MQTT broker over LAN](#Accessing-the-MQTT-broker-over-LAN)
 
-## Install the `mosquitto` packages:
+
+
+
+## Configuration of the MQTT broker
+
+### Install the `mosquitto` packages:
 
 ```bash
 sudo apt update
@@ -41,7 +50,7 @@ mosquitto_pub -h localhost -t test -m "Hello, MQTT!"
 
 The message "Hello, MQTT!" should appear in the first terminal.
 
-## To secure the MQTT broker, create a password file:
+### To secure the MQTT broker, create a password file:
 
 ```bash
 sudo mosquitto_passwd -c /etc/mosquitto/passwd <username>
@@ -75,7 +84,7 @@ The message "Hello, Secure MQTT!" should appear in the first terminal.
 The MQTT broker is now secure and ready to use.
 
 
-## Accessing the MQTT broker over LAN
+### Accessing the MQTT broker over LAN
 If you want to use the MQTT broker over LAN, you need to set a static IP address and open the port `1883` in the firewall.
 
 To set a static IP address, edit the `/etc/dhcpcd.conf` file:
@@ -93,5 +102,13 @@ sudo ufw reload
 ```
 
 The MQTT broker is now accessible over LAN.
+
+## Creating executable scripts with PyInstaller
+
+## Set up cron job to execute the script regularly
+
+I used https://crontab.guru/ to find the proper schedule expression.
+
+
 
 
