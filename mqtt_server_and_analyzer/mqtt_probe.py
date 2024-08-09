@@ -104,14 +104,14 @@ h_w_ratio_max = 3.99
 h_w_ratio_min = 1.0
 
 
-def analyze(image, detector, model):
+def analyze(image, object_detector_model, number_classifier_model):
     greyscale_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
     # Balance image
     balanced_image = balancing_tilted_image(image, greyscale_image, balancing_cycles)
     print("balance: OK")
     # Object detection and crop detected area
-    detected_image = detect_numberplate(detector, balanced_image)
+    detected_image = detect_numberplate(object_detector_model, balanced_image)
     print("detection: OK")
     # Resize and sharpen image
     resized_sharp_image = resize_and_sharpen_image(detected_image, DIM, tb_w, tb_th, tb_blur_size, tb_blur_sigma)
@@ -121,8 +121,8 @@ def analyze(image, detector, model):
     threshold_image = adaptive_threshold_and_median_blur(resized_sharp_image, blockSize, k)
     print("Threshold: OK")
 
-    IMG_WIDTH = model.layers[0].input_shape[1]
-    IMG_HEIGHT = model.layers[0].input_shape[2]
+    IMG_WIDTH = number_classifier_model.layers[0].input_shape[1]
+    IMG_HEIGHT = number_classifier_model.layers[0].input_shape[2]
     # Contours and clip image into 8 pieces
     image_list, threshold_im = find_contours(threshold_image, resized_sharp_image, 28, 28, h_min=h_min,
                                              w_min=w_min, w_max=w_max, x_min=x_min, x_max=x_max,
@@ -133,7 +133,7 @@ def analyze(image, detector, model):
     tensor = tf.image.rgb_to_grayscale(image_list)
 
     print(len(image_list), tensor.shape)
-    prediction_array = np.argmax(model.predict(tensor, verbose=False), axis=1)
+    prediction_array = np.argmax(number_classifier_model.predict(tensor, verbose=False), axis=1)
     prediction_str = ''.join([str(num) for num in prediction_array])
 
     return prediction_str, resized_sharp_image, image_list
@@ -206,7 +206,6 @@ def run():
     client.loop_forever()
 
 
-#
 if __name__ == '__main__':
     run()
-# run()
+
