@@ -96,9 +96,6 @@ Use the `train/number_classification/train_and_eval.ipynb` notebook to train the
 </p>
 
 2. ### Dial-plate detection
-    The object detector is a tensorflow lite model trained in colab.
-    Model architecture is EfficientDetV4.
-    https://colab.research.google.com/github/khanhlvg/tflite_raspberry_pi/blob/main/object_detection/Train_custom_model_tutorial.ipynb
 
 <p align="center">
     <img src="./demo_images/detected.png" width="300">
