@@ -1,12 +1,5 @@
 # Smart Gas Meter Reader
 
-Python 3.9.12
-
-```commandline
-pip install -r requirements.txt
-```
-
-
 ## Table of Contents
 - [Overview](#Overview)
 - [Programming the ESP32-CAM](#programming-the-esp32-cam)

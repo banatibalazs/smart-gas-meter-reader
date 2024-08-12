@@ -112,9 +112,15 @@ The MQTT broker is now accessible over LAN.
 
 ## Creating executable file with PyInstaller
 
+- Install the required packages. The script was tested with
+  Python 3.9.12
+  
+  ```commandline
+  pip install -r requirements.txt
+  ```
+
 - Modify the `mqtt_and_analyze.py` script.
   - Alter the broker address and port if necessary.
-  - 
 - Install PyInstaller:
 
   ```bash
