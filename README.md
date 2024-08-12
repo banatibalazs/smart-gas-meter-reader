@@ -21,7 +21,7 @@
 <img src="./demo_images/schematic_drawing.png" width="500">
 <img src="./demo_images/whole_setup.jpg" width="500">
 <img src="./demo_images/esp32_cam_3D_printed.jpg" width="500">
-<img src="./demo_images/esp32_cam_with_mb_module.jpg" width="60">
+<img src="./demo_images/esp32_cam_with_mb_module.jpg" width="300">
 
 - The ESP-CAM captures images of an analog gas meter.
 - The camera communicates with a Linux server via MQTT at regular intervals.
