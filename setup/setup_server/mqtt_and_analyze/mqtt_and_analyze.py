@@ -186,7 +186,7 @@ def run():
     client = connect_mqtt()
     subscribe(client)
     client.publish(pub_hello_esp_1, "Hello")
-    client.publish(pub_esp_1_sleep, 1)
+    client.publish(pub_esp_1_sleep, 1) # Sleep ESP32 camera, message represents the time in seconds
     client.loop_forever()
 
 

@@ -129,8 +129,15 @@ Use the `train/number_classification/train_and_eval.ipynb` notebook to train the
     <img src="./demo_images/pred_numbers.png" width="800">
 </p>
 
+7. ### Results
+    The sharpened image of the dial plate is saved in the `/results` folder with the filename constructed from a `sequential number`, the `predictions` and the `timestamp`.
+   <br> Pattern: `<seq_num>_<first_5_nums>_<last_3_nums>_<timestamp>.jpg` <br>
+   Example: `8_13678_902_1668970881.jpg`
+
 
 ## Results in flask web app
+
+The images from the results folder are copied to the flask app's static/images folder. The images are displayed on the web page.
 
 <p align="center">
     <img src="./demo_images/flask.png" width="800">
