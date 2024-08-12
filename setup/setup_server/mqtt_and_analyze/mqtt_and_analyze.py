@@ -61,7 +61,7 @@ WIDTH = 1000
 HEIGHT = 140
 DIM = (WIDTH, HEIGHT)
 NUM_THREADS = 10
-DETECTOR_PATH = './object_detector.tflite'
+DETECTOR_PATH = './models/object_detector.tflite'
 
 #Parameters of balancing algorithm (Hugh Lines)
 balancing_cycles = 3
