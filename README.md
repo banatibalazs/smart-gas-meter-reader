@@ -40,7 +40,7 @@
  [Esp32-cam setup readme](./setup/setup_esp32_cam/README.md)
 
 ## Setting up the server
- [Mosquitto setup readme](setup/setup_server/README.md)
+ [Server setup readme](setup/setup_server/README.md)
 
 ## Creating training datasets for the models
 
