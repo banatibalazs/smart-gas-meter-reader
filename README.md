@@ -20,12 +20,14 @@ pip install -r requirements.txt
   - [Sharpening and Resizing](#sharpening-and-resizing)
   - [Applying Adaptive Threshold Algorithm](#applying-adaptive-threshold-algorithm)
   - [Contour Searching on Threshold Image](#contour-searching-on-threshold-image)
-  - [Classify the Image Pieces](#classify-the-image-pieces)
-- [Results](#results)
+  - [Classify the Image pieces](#classify-the-image-pieces)
+- [Results in flask web app](#Results-in-flask-web-app)
 
 
 ## Overview
 <img src="./demo_images/schematic_drawing.png" width="600">
+<img src="./demo_images/whole_setup.jpg" width="600">
+<img src="./demo_images/esp32_cam_3D_printed.jpg" width="600">
 
 - The ESP-CAM captures images of an analog gas meter.
 - The camera communicates with a Linux server via MQTT.
@@ -72,6 +74,7 @@ pip install -r requirements.txt
 
 1. **Set Up Google Colab**:
     - Open the [Model Maker Object Detection for Android Figurine](https://colab.research.google.com/github/khanhlvg/tflite_raspberry_pi/blob/main/object_detection/Train_custom_model_tutorial.ipynb) notebook in Google Colab.
+    - Some changes are needed to train the model with the custom dataset.
 
 2. **Prepare the Dataset**:
     - Upload the labeled dataset to Google Colab.
@@ -118,6 +121,8 @@ Use the `train/number_classification/train_and_eval.ipynb` notebook to train the
     The aim is to find the coordinates of the individual numbers on the numberplate.
     On the basis of the found contours' coordinates, the 140x1000 px images are cut into 8 pieces
 
+    To find the coordinates of the numbers we utilize the contours of the threshold image.
+
 <p align="center">
     <img src="./demo_images/contour.png" width="300">
 </p>
@@ -137,7 +142,7 @@ Use the `train/number_classification/train_and_eval.ipynb` notebook to train the
 
 ## Results in flask web app
 
-The images from the results folder are copied to the flask app's static/images folder. The images are displayed on the web page.
+The images from the `/results` folder are copied to the flask app's `static/images` folder. The images are displayed on the web page.
 
 <p align="center">
     <img src="./demo_images/flask.png" width="800">
