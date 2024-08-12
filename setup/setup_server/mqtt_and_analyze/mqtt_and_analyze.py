@@ -13,12 +13,12 @@ from tflite_support.task import processor
 from tflite_support.task import vision
 from credentials import PASSWORD
 import tensorflow as tf
-from helper_functions import *
+from setup.setup_server.mqtt_and_analyze.mqtt_and_analyze import *
 
 password = PASSWORD
 
-broker = '192.168.0.33'
-port = 1883
+broker = '192.168.0.33'  # Set the broker address
+port = 1883 # Set the broker port
 sub_esp_1_photo = "esp_cam_1/from_esp"
 pub_esp_1_photo = "esp_cam_1/photo"
 pub_esp_1_sleep = "esp_cam_1/sleep"
@@ -29,33 +29,17 @@ client_id = f'python-mqtt-{random.randint(0, 100)}'
 # username = 'emqx'
 # password = 'public'
 
-def create_model():
-    model = tf.keras.models.Sequential()
-    model.add(tf.keras.layers.Conv2D(32, (3, 3), activation='relu', input_shape=(28,28,1)))
-    model.add(tf.keras.layers.Conv2D(32, (3, 3), activation='relu'))
-    model.add(tf.keras.layers.MaxPooling2D((2, 2)))
-    model.add(tf.keras.layers.Conv2D(64, (3, 3), activation='relu'))
-    model.add(tf.keras.layers.MaxPooling2D((2, 2)))
-    model.add(tf.keras.layers.Conv2D(64, (3, 3), activation='relu'))
-    model.add(tf.keras.layers.Flatten())
-    model.add(tf.keras.layers.Dense(256, activation='relu'))
-    model.add(tf.keras.layers.Dense(10, activation='softmax'))
-
-    return model
-
-
 TF_LITE_MODEL_PATH = 'models/object_detector.tflite'
 TF_MODEL_PATH = 'models/classifier.h5'
-tf_model = create_model()
-tf_model.load_weights(TF_MODEL_PATH)
+# tf_model = create_model()
+# tf_model.load_weights(TF_MODEL_PATH)
+
+tf_model = tf.keras.models.load_model(TF_MODEL_PATH)
 
 optimizer = tf.keras.optimizers.Adam(learning_rate=10e-5)
 tf_model.compile(optimizer=optimizer,
                   loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=False),
                   metrics=['accuracy'])
-
-# print(classifier_model.layers[0].input_shape[1])
-
 
 num_threads = 10
 enable_edgetpu = False
