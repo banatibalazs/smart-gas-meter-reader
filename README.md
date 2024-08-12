@@ -23,10 +23,11 @@
 <img src="./demo_images/esp32_cam_3D_printed.jpg" width="600">
 
 - The ESP-CAM captures images of an analog gas meter.
-- The camera communicates with a Linux server via MQTT.
-  - The server runs an MQTT broker and a client program.
+- The camera communicates with a Linux server via MQTT at regular intervals.
   - The server instructs the camera to take a photo.
   - The camera sends the photo to the server.
+  - The server processes the image.
+  - the server sends a sleep command to the camera.
 - The server processes the image
   - OpenCV is used to preprocess the image.
   - `TensorFlow Lite model` detects the dial plate's location.
