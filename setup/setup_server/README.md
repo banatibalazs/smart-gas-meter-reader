@@ -107,11 +107,29 @@ The MQTT broker is now accessible over LAN.
 
 ## Configure flask app
 
-## Creating executable scripts with PyInstaller
+- use gunicorn to run the flask app
+- use nginx as a reverse proxy server
+
+## Creating executable file with PyInstaller
+
+- Modify the `mqtt_and_analyze.py` script.
+  - Alter the broker address and port if necessary.
+- Install PyInstaller:
+
+  ```bash
+  pip install pyinstaller
+  ```
+- Create an executable file:
+
+  ```bash
+  pyinstaller --onefile mqtt_and_analyze.py
+
+- The executable file is located in the `dist` folder.
+- Copy the executable file to the server.
 
 ## Set up cron job
 
-- Run the script regularly.
+- Run the executable file regularly to process the images.
 - Copy the processed images into flask's static/images folder.
 
 I used https://crontab.guru/ to find the proper schedule expression.
