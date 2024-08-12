@@ -45,7 +45,7 @@
 ## Creating training datasets for the models
 
 1. Object Detection (Tensorflow Lite - EfficientDet)
-    - The dataset is labeled using the [labelImg](https://github.com/HumanSignal/labelImg) tool.
+    - The dataset is labeled using the [labelImg](https://github.com/qaprosoft/labelImg) tool.
    <p align="center">
         <img src="./demo_images/obj_det_labeling.png" width="300">
    </p>
