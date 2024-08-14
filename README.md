@@ -113,10 +113,8 @@ Use the `train/number_classification/train_and_eval.ipynb` notebook to train the
 </p>
 
 5. ### Contour searching on threshold image
-    The aim is to find the coordinates of the individual numbers on the numberplate.
-    On the basis of the found contours' coordinates, the 140x1000 px images are cut into 8 pieces
 
-    To find the coordinates of the numbers we utilize the contours of the threshold image.
+    To find the coordinates of the numbers we utilize the contours of the threshold image. On the basis of the found contours' coordinates, the 140x1000 px images are cut into 8 pieces.
 
 <p align="center">
     <img src="./demo_images/contour.png" width="300">
